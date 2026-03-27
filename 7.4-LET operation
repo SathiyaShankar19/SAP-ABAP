@@ -1,0 +1,27 @@
+
+TYPES : BEGIN OF ty_flight,
+          seq_num TYPE i,
+          carrier TYPE s_carrname,
+          connect TYPE s_conn_id,
+          fldate  TYPE s_date,
+        END OF ty_flight.
+
+DATA : lt_new TYPE STANDARD TABLE OF ty_flight.
+
+SELECT *
+FROM sflight
+INTO TABLE @DATA(lt_flights).
+IF sy-subrc EQ 0.
+  SELECT *
+  FROM scarr
+  INTO TABLE @DATA(lt_scarr).
+ENDIF.
+
+lt_new = VALUE #( FOR ls_flight IN lt_flights INDEX INTO lv_index WHERE ( connid = '820' )
+                 LET lv_carrname = VALUE #( lt_scarr[ carrid = ls_flight-carrid ]-carrname OPTIONAL )
+                 IN carrier = lv_carrname
+                 (  seq_num = lv_index
+                   connect = ls_flight-connid
+                   fldate = ls_flight-fldate ) ).
+
+cl_demo_output=>display( lt_new ).
