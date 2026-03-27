@@ -1,1 +1,41 @@
+data : io_01 TYPE mara-matnr.
+TABLES : MARA,MARC.
+CONTROLS : tab TYPE TABSTRIP .
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_2000  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE user_command_2000 INPUT.
 
+  case sy-ucomm.
+    WHEN 'MARA'.
+      TAB-activetab = 'MARA'.
+      SELECT SINGLE MATNR,ERNAM,MBRSH,MTART,MATKL FROM MARA
+        INTO @DATA(WA_MARA) WHERE MATNR = @IO_01.
+
+        MARA-matnr  = WA_MARA-matnr.
+        mara-ernam  = wa_mara-ernam.
+        mara-mbrsh  = wa_mara-mbrsh.
+        mara-mtart  = wa_mara-mtart.
+        mara-matkl  = wa_mara-matkl.
+
+        WHEN 'MARC'.
+          tab-activetab = 'MARC'.
+          select SINGLE matnr,werks from marc INTO @data(wa_marc) WHERE matnr = @io_01.
+            marc-matnr = wa_marc-matnr.
+            marc-werks = wa_marc-werks.
+    ENDCASE.
+ENDMODULE.
+_________________________________________________________________________________________
+PROCESS BEFORE OUTPUT.
+  CALL SUBSCREEN sub1 INCLUDING sy-repid '2001'.
+  CALL SUBSCREEN sub2 INCLUDING sy-repid '2002'.
+
+
+PROCESS AFTER INPUT.
+
+  CALL SUBSCREEN sub1.
+  CALL SUBSCREEN sub2.
+  MODULE user_command_2000
+_________________________________________________________________________________________________
