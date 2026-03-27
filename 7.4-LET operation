@@ -1,3 +1,10 @@
+Description:
+A LET expression creates local variables (e.g., var1, var2, …) or field symbols (e.g., <fs1>, <fs2>, …) within an expression and assigns values to them for temporary use.
+
+Once declared, the helper fields can only be used within the expression where they are defined. They cannot be accessed outside that expression.
+LET expressions can currently be used only within constructor expressions.
+They are allowed in subexpressions such as iteration expressions with FOR, and in the THEN and ELSE parts of conditional expressions like COND and SWITCH.
+
 
 TYPES : BEGIN OF ty_flight,
           seq_num TYPE i,
