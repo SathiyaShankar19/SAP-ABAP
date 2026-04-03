@@ -1,0 +1,44 @@
+SAP 
+Everything in SAP is a Transaction.A Transaction is a 
+specific task for performing an activity.SAP is a 
+Transaction based system. A client is a unique global entity 
+having its own set of data.800 is the client no for learning 
+SAP.
+SAP Easy Access is the tool for learning SAP.
+It is called as SAP IDES which stands for Internet 
+Demonstration and Education System.
+SE --- Software engineering/development
+SM --- System maintenance
+ST --- System Trace
+The following are some of the important transaction codes 
+that are commonly used in ABAP:
+SE11 --- ABAP Dictionary
+SE38 --- ABAP Editor
+SE37 --- Function Builder
+SE51 --- Screen Painter
+SE41 --- Menu Painter
+SE80 --- Object Navigator
+SE71 --- Form Painter
+SE21 --- Package Builder
+SE14 --- Database Utilities 
+Note:All the user defined or custom defined objects created 
+by the developer should begin with "Z" or "Y" only.
+The logon credentials for SAP:
+Client:800
+username:sapuser(may change)
+password:india123(may change)
+Language:EN --- default.
+SAP ECC 6.0 --- Enterprise Central / Core 
+Component
+EHP5/EHP7.1/7.2/EHP8.3
+Commands that are frequently used :
+/n -- closes the current window
+/nSE11 -- closes the current and opens the give
+ transaction
+F3 -- Back
+/oSE11 --- Opens the new session with the given
+ transaction code
+CTRL + F2 --- Syntax Check
+CTRL + F3 --- Activate
+CTRL + S --- Save
+F8 --- Execute
