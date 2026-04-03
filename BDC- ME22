@@ -1,0 +1,139 @@
+
+FUNCTION z_con_task6.
+  DATA:
+    it_bdcdata    TYPE STANDARD TABLE OF bdcdata,
+    wa_bdcdata    TYPE bdcdata,
+    it_bdcmsgcoll TYPE STANDARD TABLE OF bdcmsgcoll,
+    wa_bdcmsgcoll TYPE bdcmsgcoll,
+    lv_msgid      TYPE bapiret2-id,
+    lv_msgno      TYPE bapiret2-number,
+    lv_msgv1      TYPE bapiret2-message_v1,
+    lv_msgv2      TYPE bapiret2-message_v2,
+    lv_msgv3      TYPE bapiret2-message_v3,
+    lv_msgv4      TYPE bapiret2-message_v4,
+    lv_msg        TYPE bapiret2-message.
+
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-program  = 'SAPMM06E'.
+  wa_bdcdata-dynpro   = '0105'.
+  wa_bdcdata-dynbegin = 'X'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-fnam = 'BDC_CURSOR'.
+  wa_bdcdata-fval = 'RM06E-BSTNR'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-fnam = 'BDC_OKCODE'.
+  wa_bdcdata-fval = '/00'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-fnam = 'RM06E-BSTNR'.
+  wa_bdcdata-fval = v_ebeln.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  " Second Screen: Change Quantity
+  CLEAR wa_bdcdata.
+  wa_bdcdata-program  = 'SAPMM06E'.
+  wa_bdcdata-dynpro   = '0120'.
+  wa_bdcdata-dynbegin = 'X'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-fnam = 'BDC_CURSOR'.
+  wa_bdcdata-fval = 'EKPO-MENGE(01)'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-fnam = 'BDC_OKCODE'.
+  wa_bdcdata-fval = '/00'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-fnam = 'EKPO-MENGE(01)'.
+  wa_bdcdata-fval = v_menge.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  " Save Changes
+  CLEAR wa_bdcdata.
+  wa_bdcdata-program  = 'SAPMM06E'.
+  wa_bdcdata-dynpro   = '0120'.
+  wa_bdcdata-dynbegin = 'X'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-fnam = 'BDC_CURSOR'.
+  wa_bdcdata-fval = 'EKPO-MENGE(01)'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+  CLEAR wa_bdcdata.
+  wa_bdcdata-fnam = 'BDC_OKCODE'.
+  wa_bdcdata-fval = '=BU'.
+  APPEND wa_bdcdata TO it_bdcdata.
+
+
+
+
+
+  CALL TRANSACTION 'ME22' USING it_bdcdata
+                            MODE 'N'  " Display mode (use 'N' for no display)
+                            UPDATE 'S'
+                            MESSAGES INTO it_bdcmsgcoll.
+
+  READ TABLE it_bdcmsgcoll INTO wa_bdcmsgcoll WITH KEY msgtyp ='E'.
+  IF sy-subrc EQ 0.
+    CLEAR: lv_msgid, lv_msgno, lv_msgv1,lv_msgv2,lv_msgv3,lv_msgv4,lv_msg.
+    lv_msgid = wa_bdcmsgcoll-msgid.
+    lv_msgno = wa_bdcmsgcoll-msgnr.
+    lv_msgv1 = wa_bdcmsgcoll-msgv1.
+    lv_msgv2 = wa_bdcmsgcoll-msgv2.
+    lv_msgv3 = wa_bdcmsgcoll-msgv3.
+    lv_msgv4 = wa_bdcmsgcoll-msgv4.
+
+    CALL FUNCTION 'BAPI_MESSAGE_GETDETAIL'
+      EXPORTING
+        id         = lv_msgid
+        number     = lv_msgno
+        textformat = 'ASC'
+        message_v1 = lv_msgv1
+        message_v2 = lv_msgv2
+        message_v3 = lv_msgv3
+        message_v4 = lv_msgv4
+      IMPORTING
+        message    = lv_msg.
+
+
+  ELSE.
+    lv_msg = 'PO Quantity updated successfully'.
+  ENDIF.
+
+  ev_message = lv_msg.
+
+
+
+
+ENDFUNCTION.
+
+**----------------------------------------------------------------------*
+**        Start new screen                                              *
+**----------------------------------------------------------------------*
+*FORM bdc_dynpro USING program dynpro.
+*
+*ENDFORM.
+*
+**----------------------------------------------------------------------*
+**        Insert field                                                  *
+**----------------------------------------------------------------------*
+*FORM bdc_field USING fnam fval.
+*
+*  CLEAR bdcdata.
+*  bdcdata-fnam = fnam.
+*  bdcdata-fval = fval.
+*  APPEND bdcdata.
+*
+*ENDFORM.
+task6.txt
+Displaying Task 1.txt.
