@@ -1,0 +1,2418 @@
+
+/nEX --- completely closes all the sessions
+*&----------------------------------------------------------
+-----------*
+*& Report ZBTCH8_FIRST
+*&
+*&----------------------------------------------------------
+-----------*
+*&
+*&
+*&----------------------------------------------------------
+-----------*
+* if the first alphabet is a * then it is a comment and comm
+ents
+* are non executable statements.
+* comments can also be placed at the end of the statement by
+* placing them in ".
+* Every single line statement will end with a period or dot
+* operator.
+* all the keywords will be blue in color .
+* if there are multiple lines in the program then the first
+* line will end with a comma and the last line will end with
+* a period or dot operator.
+REPORT ZBTCH8_FIRST.
+* write is the keyword for printing the text in the output
+WRITE 'Hello World'.
+* to print the text in separate lines.
+*Write:/ 'Hello'.
+*Write:/ 'World'.
+Write:/ 'Hello',
+ / 'World'.
+* to print the text in a specific position in the output.
+Write:/30 'Hello World'.
+* skip is the keyword for skipping a line.
+Skip.
+Write:/ 'Hello World'.
+Skip 2.
+Write:/ 'Hello World'.
+* uline is used to draw an underline.
+uline.
+* to print different colors in the output.
+Write:/ 'Hello World' color 1.
+Write:/ 'Hello World' color 2.
+Write:/ 'Hello World' color 3.
+Write:/ 'Hello World' color 4.
+Write:/ 'Hello World' color 5.
+Write:/ 'Hello World' color 6.
+Write:/ 'Hello World' color 7.
+* to print only the text in color .
+Uline.
+Write:/ 'Hello World' color 1 INVERSE on.
+Write:/ 'Hello World' color 2 INVERSE on.
+Write:/ 'Hello World' color 3 INVERSE on.
+Write:/ 'Hello World' color 4 INVERSE on.
+Write:/ 'Hello World' color 5 INVERSE on.
+Write:/ 'Hello World' color 6 INVERSE on.
+Write:/ 'Hello World' color 7 INVERSE on.
+uline.
+* to print the current date,time and username in the output.
+Write:/ 'Current Date is',Sy-datum color 3,
+ / 'Current Time is',Sy-uzeit color 3,
+ / 'Current User is',Sy-Uname color 3,
+ / 'Current Client is',sy-mandt color 3.
+String Functions 
+A String is a character oriented datatype that holds the 
+text of unlimited length. A Variable is a location in memory 
+for storing data. There are different types of data types in 
+ABAP:
+1) I - Integer
+2) C - Character 
+3) String - String Datatype 
+4) Packed Decimals - for storing decimal points
+Data is the keyword for defining a variable in 
+ABAP.
+String Functions.
+1) Concatenate joins one or more strings.
+2) Translate translates the string to upper and lower cases.
+3) Replace is the function that replaces one character with 
+another character.
+4) Condense is the function that removes the leading spaces 
+in the string.
+5) Strlen is the function used to find the length
+of the string.
+*&----------------------------------------------------------
+-----------*
+*& Report ZBTCH8_STRINGS
+*&
+*&----------------------------------------------------------
+-----------*
+*&
+*&
+*&----------------------------------------------------------
+-----------*
+REPORT ZBTCH8_STRINGS.
+* Data is the keyword that defines the variables
+Data:A type String Value 'Welcome to',
+ B type string Value 'abap programming',
+ C type String.
+* concatenate joins one or more strings.
+CONCATENATE a b into C.
+Write:/ 'The Concatenated String is',C color 5.
+* concatenate with the space
+CONCATENATE a b into C SEPARATED BY Space.
+Write:/ 'The Concatenated String is',c color 5.
+* concatenate with a delimiter
+CONCATENATE a b into c SEPARATED BY ','.
+Write:/ 'The Concatenated String is',c color 5.
+* Translate translates to upper and lower cases.
+Translate c to upper case.
+Skip.
+Write:/ 'The Translated String is',c color 3.
+Translate c to lower case.
+Write:/ 'The Translated String is',c color 3.
+* replace is the function that replaces one character with
+* another.
+Replace 'o' in c with '$'.
+Skip.
+Write:/ 'The Replaced String is',c color 7.
+* to replace all occurrances
+Replace all OCCURRENCES OF 'o' in c with '$'.
+Write:/ 'The Replaced String is',c color 7.
+Data:c1 type String value 'HellO wOrld'.
+Replace all OCCURRENCES OF 'o' in c1 with '#' IGNORING CASE.
+Write:/ 'The Replaced String is',c1 color 2.
+* condense is the function that removes the leading spaces
+* in the string.
+Data:C2 type string Value 'ABAP is a programming languag
+e'.
+Skip.
+Condense C2.
+Write:/ 'The Condensed String is',C2 color 4.
+Condense c2 NO-GAPS.
+Write:/ 'The Condensed String is',c2 color 4.
+* Strlen is used to find the length of the string
+Data:N1 type I."integer
+N1 = Strlen( C2 ).
+Skip.
+Write:/ 'The Length of the String is',N1 color 1.
+Radiobuttons 
+Radiobuttons are the option for selection where only one 
+will be active at a time.all the radiobuttons must be in a 
+single radiobutton group.
+Parameters is the keyword for defining radiobuttons.
+The rectangular box in the ABAP Editor is called 
+as Selection screen.
+Selection screen is the frame which contains a 
+title and the input fields can be placed for
+input. Every Selection screen has a begin of block and
+an end of block .
+Every selection screen will have a frame,title and
+text element which begins with 000.
+*&----------------------------------------------------------
+-----------*
+*& Report ZBTCH8_RADIOBUTTONS
+*&
+*&----------------------------------------------------------
+-----------*
+*&
+*&
+*&----------------------------------------------------------
+-----------*
+REPORT ZBTCH8_RADIOBUTTONS.
+** selection screen creationg goes here.
+Selection-SCREEN Begin of Block B1 with frame title text-
+000.
+** parameters is the keyword for defining radiobuttons
+* the technical name of the radiobutton should not exceed
+* more than 8 characters long.
+parameters:Source RADIOBUTTON GROUP RG1,
+ Variants RADIOBUTTON GROUP RG1,
+ attrib RADIOBUTTON GROUP RG1,
+ Document RADIOBUTTON GROUP RG1,
+ Element RADIOBUTTON GROUP RG1.
+SELECTION-SCREEN End of Block B1.
+* code for processing the radiobuttons
+* X -- denotes the selection of the radiobutton
+If Source = 'X'.
+ Write:/ 'Source Code is Selected'.
+elseif Variants = 'X'.
+ Write:/ 'variants is selected'.
+elseif attrib = 'X'.
+ Write:/ 'attributes is selected'.
+elseif Document = 'X'.
+ Write:/ 'F1 Documentation is Selected'.
+else.
+ Write:/ 'Text Elements is Selected'.
+endif.
+Internal tables 
+An internal table is a dataset located in the 
+working memory space of ABAP.It is like an 
+Array in other programming languages.An 
+internal table allocates the space at run time.
+Every internal table has 3 parts:
+1) Header line/ Work area/ Line Type/ 
+Structure that stores a single line or 
+row.
+2) Key which is unique or non-unique.
+3) Table Type / Body that stores multiple 
+records or a table.
+ There are 3 types of Table Types
+1) Standard Table 
+2) Sorted Table 
+3) Hashed table
+The below example is for storing the 
+information of the structure for vendor details 
+which contains the following fields.
+Vendorno,Vendorname,City and Country and with 
+the data mentioned below.
+ 
+1003 Demo Vendor3 Hyderabad IN
+Workarea/ Structure/Line 
+type/Headerline
+Body / Table Type
+1) Standard Table
+2) Sorted Table
+3) Hashed Table
+ There are various operations of an internal 
+table which are as mentioned below:
+1) Append 
+2) Sort
+3) Read table
+4) Clear
+5) Refresh
+6) Free
+7) Collect 
+Each record from the workarea must be appended 
+to the body of the internal table.
+There are 2 ways of creating an internal table:
+1) An internal table with header line where 
+the workarea and body will have same 
+names.
+It is created using the keyword OCCURS.
+OCCURS defines an internal table.
+Syntax:Begin of Vendor occurs 0,
+ <fld1>,
+ <fld2>,
+1001 Demo Vendor 1 Hyderabad IN
+1002 Demo Vendor 2 Delhi IN
+1003 Demo Vendor 3 Chennai IN
+ <fld3>,
+ End of Vendor.
+0 is the number of records allocated.
+When 0 is mentioned the space is 
+allocated for unlimited number of 
+records.
+If occurs 10 is given,space is allocated 
+for 10 and so on.
+*&------------------------------------------------------------------
+---*
+*& Report ZBTCH8_WITHHEADERLINE
+*&
+*&------------------------------------------------------------------
+---*
+*&
+*&
+*&------------------------------------------------------------------
+---*
+REPORT ZBTCH8_WITHHEADERLINE.
+* Demo of internal table with header line
+Data:Begin of Vendor Occurs 0,
+ vendno(5) type c,
+ name(35) type c,
+ city(35) type c,
+ ctry(2) type c,
+ End of Vendor.
+** assign the values
+Vendor-vendno = '1001'.
+vendor-name = 'Demo Vendor 1'.
+vendor-city = 'Hyderabad'.
+vendor-ctry = 'IN'.
+Append Vendor.
+Vendor-vendno = '1002'.
+vendor-name = 'Demo Vendor 2'.
+vendor-city = 'Delhi'.
+vendor-ctry = 'IN'.
+Append Vendor.
+Vendor-vendno = '1003'.
+vendor-name = 'Demo Vendor 3'.
+vendor-city = 'Chennai'.
+vendor-ctry = 'IN'.
+Append Vendor.
+** Display the output.
+Loop at Vendor.
+Write:/ Vendor-vendno color 4,
+ vendor-name color 4,
+ vendor-city color 4,
+ vendor-ctry color 4.
+endloop.
+2) An internal table without header line 
+where an explicit workarea and body are 
+to be created.Workarea and Body must be 
+created separately.
+*&------------------------------------------------------------------
+---*
+*& Report ZBTCH8_WITHOUT_HEADERLINE
+*&
+*&------------------------------------------------------------------
+---*
+*&
+*&
+*&------------------------------------------------------------------
+---*
+REPORT ZBTCH8_WITHOUT_HEADERLINE.
+** Types Declaration will only create the structure but
+** does not allocate any space for it.
+Types:Begin of Vendor,
+ vendno(5) type c,
+ name(35) Type c,
+ city(35) type c,
+ ctry(2) type c,
+ End of Vendor.
+** Create the workarea and body.
+Data:T_Vendor type STANDARD TABLE OF Vendor,"Body
+ w_Vendor type vendor."Workarea.
+w_Vendor-vendno = '1001'.
+w_Vendor-name = 'Demo Vendor 1'.
+w_Vendor-city = 'Hyderabad'.
+w_Vendor-ctry = 'IN'.
+Append w_vendor to t_Vendor.
+w_Vendor-vendno = '1002'.
+w_Vendor-name = 'Demo Vendor 2'.
+w_Vendor-city = 'Delhi'.
+w_Vendor-ctry = 'IN'.
+Append w_vendor to t_Vendor.
+w_Vendor-vendno = '1003'.
+w_Vendor-name = 'Demo Vendor 3'.
+w_Vendor-city = 'Hyderabad'.
+w_Vendor-ctry = 'IN'.
+Append w_vendor to t_Vendor.
+* display the output.
+* loop from body into workarea.
+Loop at t_Vendor into w_Vendor.
+ Write:/ w_Vendor-vendno color 4,
+ w_Vendor-name color 4,
+ w_Vendor-city color 4.
+endloop.
+Getting the data from the database tables 
+Different operations of internal tables include
+The data retrieval from the table.
+1) Insert
+2) Update
+3) Modify
+4) Delete
+5) Select 
+6) Read table 
+7) Sort 
+Select is the keyword for retrieving the data 
+from the table.There are various versions of 
+SQL.
+The following is the program which gets the 
+data from the custom table.
+Goto SE11 and create the table Zvendor and 
+insert the records in the table.
+*&---------------------------------------------------------------------*
+*& Report ZBTCH8_VENDOR
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBTCH8_VENDOR LINE-size 150.
+** 1) Types declaration
+Types:Begin of Vendor,
+ vendorno type zvendor-vendorno,
+ name type zvendor-name,
+ street type zvendor-street,
+ city type zvendor-city,
+ postalcode type zvendor-postalcode,
+ country type zvendor-country,
+ End of Vendor.
+** 2) Data declarations
+Data:T_Vendor type STANDARD TABLE OF Vendor,"Body
+ w_Vendor type Vendor."Workarea
+** write the select statement to get the data from the table
+.
+Select Vendorno
+ name
+ **Street
+ city
+ postalcode
+ country from zvendor
+ into table t_vendor.
+** 4) Display the output.
+Loop at t_vendor into w_Vendor.
+ Write:/ w_Vendor-vendorno color 3,
+ w_Vendor-name color 4,
+ w_Vendor-street color 4,
+ w_Vendor-city color 4,
+ w_Vendor-postalcode color 4,
+ w_vendor-country color 4.
+endloop.
+Sales Tables Tablename Description
+VA VBAK SALES HEADER 
+DATA
+VA VBAP SALES ITEM 
+DATA
+VA VBEP SALES SCHEDULE 
+LINE DATA
+VA VBPA SALES PARTNER 
+DATA
+VA VBFA SALES DOCUMENT 
+FLOW
+Customer 
+Tables
+Tablename Description
+VS KNA1 CUSTOMER 
+MASTER DATA
+VS KNB1 CUSTOMER 
+COMPANY CODE 
+DATA
+VS KNBK CUSTOMER BANK 
+DATA
+VS KNVV CUSTOMER SALES 
+DATA
+VS KNKK CUSTOMER 
+MASTER CREDIT 
+MANAGEMENT 
+CONTROL
+DELIVERY 
+TABLES
+VL LIKP DELIVERY 
+HEADER
+VL LIPS DELIVERY ITEMS
+BILLING TABLES
+VF VBRK BILLING HEADER 
+DATA
+VF VBRP BILLING ITEM 
+DATA
+VENDOR TABLES
+FBK(IN THIS 
+CASE)
+LFA1 VENDOR MASTER 
+DATA
+FBK LFB1 VENDOR MASTER 
+COMPANY CODE 
+DATA
+FBK LFBK VENDOR MASTER 
+BANK DATA
+FBK LFM1 VENDOR MASTER 
+PURCHASE DATA
+FBK LFC1 VENDOR MASTER 
+TRANSACTION 
+DATA
+PURCHASE 
+TABLES(ME)
+ME EKKO PURCHASE 
+HEADER DATA
+ME EKPO PURCHASE ITEM 
+DATA
+ME EKET PURCHASE 
+SCHEDULE LINE 
+DATA
+ME EBAN PURCHASE 
+REQUISITIONS
+MATERIAL 
+DOCUMENT 
+TABLES(MG)
+MG MKPF MATERIAL 
+DOCUMENT 
+HEADER
+MG MSEG PURCHASE 
+DOCUMENT ITEM
+Classical Reports 
+Classical Reports are those reports where an 
+input is provided and its corresponding output 
+is displayed.
+Every ABAP Program has 3 parts:
+1) Declaration section where all the 
+variables are declared.
+2) Processing section where the processing 
+is done.
+3) Output section where the output is 
+displayed.
+ The following are the events in the classical 
+ Reports:
+1) Initialization is an event where all the 
+variables are declared or initialized.
+It is used for providing the default 
+values in the program.
+2) AT Selection screen is used for 
+validating the user input in the 
+selection screen.
+3) Start of selection is used for further 
+processing when the selection screen 
+leaves.It is normally used for database 
+processing(retrieving the data from the 
+tables)
+4) End-of-selection is used for displaying 
+the output.
+5) Top-of-page is used for providing the 
+column headings in the output.
+6) End-of-page is used for providing the 
+displaying the footer details in the 
+output.
+*&---------------------------------------------------
+------------------*
+*& Report ZBTCH8_PURCHASE_CLASSICAL
+*&
+*&---------------------------------------------------
+------------------*
+*&
+*&
+*&---------------------------------------------------
+------------------*
+REPORT ZBTCH8_PURCHASE_CLASSICAL.
+** Types declaration
+Types:Begin of ty_Ekko,
+ ebeln type ekko-ebeln,"Purchase doc no
+ ekorg type ekko-ekorg,"purchase organization
+ ekgrp type ekko-ekgrp,"purchasing group
+ aedat type ekko-aedat,"changed on
+ ernam type ekko-ernam,"created by
+ bukrs type ekko-bukrs,"company code
+ lifnr type ekko-lifnr,"vendorno
+ zterm type ekko-zterm,"terms of payment
+ End of ty_ekko.
+** 2) Data declarations
+Data:T_ekko type STANDARD TABLE OF ty_Ekko,"Body
+ w_Ekko type ty_ekko."Workarea
+** 3) Selection screen for user input
+** to provide a range of values
+Select-options:OrderNo for w_ekko-ebeln.
+** Initialization for providing the default values
+initialization.
+Clear w_ekko.
+refresh t_ekko.
+** At selection-screen for validating the user input
+at SELECTION-SCREEN.
+Select Ebeln
+from ekko
+into table t_ekko
+where ebeln in Orderno.
+** check for correctness
+If Sy-subrc <> 0."false
+ Message 'Enter Correct Purchase Document No' type '
+E'."error message
+endif.
+** start-of￾selection for retreiving the data from table
+Start-of-selection.
+Select ebeln
+ ekorg
+ ekgrp
+ lifnr
+ bukrs
+ aedat
+ ernam
+ zterm from ekko into table t_ekko
+ where ebeln in orderno.
+** End-of-selection to display the output.
+End-of-selection.
+Sort t_ekko by ebeln
+ ekorg
+ ekgrp
+ lifnr
+ bukrs
+ aedat
+ ernam
+ zterm ASCENDING.
+Loop at t_ekko into w_Ekko.
+Write:/ w_Ekko-ebeln color 3,
+ 12 w_ekko-ekorg color 4,
+ 22 w_Ekko-ekgrp color 4,
+ 32 w_Ekko-lifnr color 4,
+ 44 w_Ekko-bukrs color 4,
+ 54 w_Ekko-aedat color 4,
+ 66 w_ekko-ernam color 4,
+ 90 w_ekko-zterm color 4.
+endloop.
+** Top-of-page for displaying the column headings
+Top-of-page.
+Format color 3.
+Write:/ 'OrderNo',
+ 12 'POrgn',
+ 22 'PGroup',
+ 32 'VendorNo',
+ 44 'ComCode',
+ 54 'DateOn',
+ 66 'CreatedBy',
+ 90 'PayTerms'.
+Uline.
+06.05.2019
+Using joins in ABAP.
+There are different types of joins in 
+ABAP.
+An Inner join is an join where the data 
+from both the tables must have common 
+data together.
+*&---------------------------------------------------
+------------------*
+*& Report ZBTCH8_PURCHASE_JOIN
+*&
+*&---------------------------------------------------
+------------------*
+*&
+*&
+*&---------------------------------------------------
+------------------*
+REPORT ZBTCH8_PURCHASE_JOIN.
+** 1) Types Declaration
+Types:Begin of ty_Inner,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_inner.
+** data declarations
+Data:T_inner type STANDARD TABLE OF ty_inner,"Body
+ w_inner type ty_inner."Workarea
+** 3) selection screen
+selection￾screen Begin of Block B1 with frame title text-000.
+** to provide a range of values
+ Select-options:OrderNo for w_inner-ebeln.
+Selection-Screen End of Block B1.
+** initialization.
+initialization.
+Clear w_inner.
+refresh t_inner.
+** at selection screen for validating the user input
+AT SELECTION-SCREEN.
+Select Ebeln
+from ekko
+into table t_inner
+where ebeln in Orderno.
+If Sy-Subrc <> 0.
+ Message 'Enter Correct Purchase Document Number' t
+ype 'E'.
+Endif.
+** Start-of-selection.
+Start-of-selection.
+Select Ekko~ebeln
+ ekko~ekorg
+ ekko~ekgrp
+ ekko~bukrs
+ ekko~lifnr
+ ekpo~ebelp
+ ekpo~matnr
+ ekpo~matkl
+ ekpo~netpr
+from ekko inner join ekpo on ekko~ebeln = ekpo~ebeln
+into table t_inner
+where ekko~ebeln in Orderno.
+End-of-selection.
+Sort t_inner by ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr
+ ebelp
+ matnr
+ matkl
+ netpr ascending.
+Loop at t_inner into w_inner.
+ Write:/ w_inner-ebeln color 3,
+ 12 w_inner-ekorg color 4,
+ 22 w_inner-ekgrp color 4,
+ 32 w_inner-bukrs color 4,
+ 42 w_inner-lifnr color 4,
+ 54 w_inner-ebelp color 4,
+ 64 w_inner-matnr color 4,
+ 80 w_inner-matkl color 4,
+ 90 w_inner-netpr color 4.
+endloop.
+** top-of-page.
+Top-of-page.
+Format color 3.
+Write:/ 'OrderNo',
+ 12 'POrgn',
+ 22 'PGroup',
+ 32 'CCode',
+ 42 'VendNo',
+ 54 'PItem',
+ 64 'MatNo',
+ 80 'MatGroup',
+ 90 'NetPrice'.
+uline.
+Join the following tables
+EKKO,EKPO,MARA,MAKT
+VBAK,VBAP,KNA1
+LIKP,LIPS,KNA1
+VBAK,VBAP,LIKP,LIPS,VBRK,VBRP,KNA1
+The program below is for joining 3 tables for sales 
+details
+*&---------------------------------------------------
+------------------*
+*& Report ZBTCH8_PURCHASE_JOIN
+*&
+*&---------------------------------------------------
+------------------*
+*&
+*&
+*&---------------------------------------------------
+------------------*
+REPORT ZBTCH8_PURCHASE_JOIN3 NO STANDARD PAGE HEADIN
+G
+ line-size 255.
+** 1) Types Declaration
+Types:Begin of ty_Inner,
+ vbeln type vbak-vbeln,
+ vkorg type vbak-vkorg,
+ vkgrp type vbak-vkgrp,
+ kunnr type vbak-kunnr,
+ posnr type vbap-posnr,
+ matnr type vbap-matnr,
+ matkl type vbap-matkl,
+ netpr type vbap-netpr,
+ name1 type kna1-name1,
+ ort01 type kna1-ort01,
+ End of ty_inner.
+** data declarations
+Data:T_inner type STANDARD TABLE OF ty_inner,"Body
+ w_inner type ty_inner."Workarea
+** 3) selection screen
+selection-
+screen Begin of Block B1 with frame title text-000.
+** to provide a range of values
+ Select-options:OrderNo for w_inner-vbeln.
+Selection-Screen End of Block B1.
+** initialization.
+initialization.
+Clear w_inner.
+refresh t_inner.
+** at selection screen for validating the user input
+AT SELECTION-SCREEN.
+Select vbeln
+from vbak
+into table t_inner
+where vbeln in Orderno.
+If Sy-Subrc <> 0.
+ Message 'Enter Correct Sales Document Number' type
+'E'.
+Endif.
+** Start-of-selection.
+Start-of-selection.
+select vbak~vbeln
+ vbak~vkorg
+ vbak~vkgrp
+ vbak~kunnr
+ vbap~posnr
+ vbap~matnr
+ vbap~matkl
+ vbap~netpr
+ kna1~name1
+ kna1~ort01
+from vbak inner join vbap on vbak~vbeln = vbap~vbeln
+ inner join kna1 on vbak~kunnr = kna1~kunnr
+into table t_inner
+where vbak~vbeln in orderno.
+** end-of-selection for displaying the output.
+End-of-selection.
+Sort t_inner by vbeln
+ vkorg
+ vkgrp
+ kunnr
+ posnr
+ matnr
+ matkl
+ netpr
+ name1
+ ort01 ascending.
+Loop at t_inner into w_inner.
+ Write:/ Sy-tabix color 3,
+ 12 w_inner-vbeln color 4,
+ 22 w_inner-vkorg color 4,
+ 32 w_inner-vkgrp color 4,
+ 42 w_inner-kunnr color 4,
+ 54 w_inner-posnr color 4,
+ 64 w_inner-matnr color 4,
+ 80 w_inner-matkl color 4,
+ 90 w_inner-netpr color 4,
+ 110 w_inner-name1 color 4,
+ 135 w_inner-ort01 color 4.
+endloop.
+** Top-of￾page for providing the column headings for the output
+.
+Top-of-page.
+Format color 3.
+uline.
+Write:/ 'SNo',
+ 12 'OrderNo',
+ 22 'SOrgn',
+ 32 'SGroup',
+ 42 'CustNo',
+ 54 'ItemNo',
+ 64 'MatNo',
+ 80 'MatGrp',
+ 90 'NetPrice',
+ 110 'CustName',
+ 135 'City'.
+Uline.
+The output is as follows:
+ The data in the output is displayed but the header 
+ Fields is getting repeated like SOrgn,Sgroup,Customerno 
+ Etc.
+ We want a summarized program of displaying the orderno as 
+ The main field and all the fields should be below it.
+ Calculate the sub total for the Netprice and also 
+ Calculate the grand total for the NetPrice field.
+ This can be done by using CONTROL BREAK STATEMENTS:
+ All the control break statements must be executed within 
+ The loop and endloop only.
+ There are 4 control Break Statements in ABAP:
+1) AT FIRST 
+2) AT NEW <fieldname>.
+3) AT END OF <fieldname>.
+4) AT LAST.
+*&------------------------------------------------------
+---------------*
+*& Report ZBTCH8_PURCHASE_JOIN
+*&
+*&------------------------------------------------------
+---------------*
+*&
+*&
+*&------------------------------------------------------
+---------------*
+REPORT ZBTCH8_PURCHASE_JOIN3 NO STANDARD PAGE HEADING
+ line-size 255.
+** 1) Types Declaration
+Types:Begin of ty_Inner,
+ vbeln type vbak-vbeln,
+ vkorg type vbak-vkorg,
+ vkgrp type vbak-vkgrp,
+ kunnr type vbak-kunnr,
+ posnr type vbap-posnr,
+ matnr type vbap-matnr,
+ matkl type vbap-matkl,
+ netpr type vbap-netpr,
+ name1 type kna1-name1,
+ ort01 type kna1-ort01,
+ End of ty_inner.
+** data declarations
+Data:T_inner type STANDARD TABLE OF ty_inner,"Body
+ w_inner type ty_inner."Workarea
+** 3) selection screen
+selection￾screen Begin of Block B1 with frame title text-000.
+** to provide a range of values
+ Select-options:OrderNo for w_inner-vbeln.
+Selection-Screen End of Block B1.
+** initialization.
+initialization.
+Clear w_inner.
+refresh t_inner.
+** at selection screen for validating the user input
+AT SELECTION-SCREEN.
+Select vbeln
+from vbak
+into table t_inner
+where vbeln in Orderno.
+If Sy-Subrc <> 0.
+ Message 'Enter Correct Sales Document Number' type 'E
+'.
+Endif.
+** Start-of-selection.
+Start-of-selection.
+select vbak~vbeln
+ vbak~vkorg
+ vbak~vkgrp
+ vbak~kunnr
+ vbap~posnr
+ vbap~matnr
+ vbap~matkl
+ vbap~netpr
+ kna1~name1
+ kna1~ort01
+from vbak inner join vbap on vbak~vbeln = vbap~vbeln
+ inner join kna1 on vbak~kunnr = kna1~kunnr
+into table t_inner
+where vbak~vbeln in orderno.
+** end-of-selection for displaying the output.
+End-of-selection.
+Sort t_inner by vbeln
+ vkorg
+ vkgrp
+ kunnr
+ posnr
+ matnr
+ matkl
+ netpr
+ name1
+ ort01 ascending.
+Loop at t_inner into w_inner.
+ at First.
+ Write:/35 'Sales Report' color 5.
+ Endat.
+ at new vbeln.
+ write:/ w_inner-vbeln color 3.
+ endat.
+ Write:/ w_inner-vkorg color 4,
+ w_inner-vkgrp color 4,
+ w_inner-kunnr color 4,
+ w_inner-posnr color 4,
+ w_inner-matnr color 4,
+ w_inner-matnr color 4,
+ w_inner-matkl color 4,
+ w_inner-netpr color 4,
+ w_inner-name1 color 4,
+ w_inner-ort01 color 4.
+ Format color 3.
+ At end of vbeln.
+ Sum.
+ Write:/ w_inner-netpr under w_inner-netpr.
+ endat.
+ At last.
+ Sum.
+ Write:/ w_inner-netpr under w_inner-netpr.
+ Endat.
+endloop.
+09.05.2019
+Modularization Techniques
+Breaking the program into small chunks of 
+code is called a Module.There are different 
+types of Modularization techniques in ABAP 
+which are as follows:
+1) Include Program
+2) Function Module
+3) Module Pool Program
+4) Sub routine 
+5) Class 
+6) Interface
+ An Include program is a program of type 
+ Include which is used for declarations of 
+ The program.
+ 
+ If there are more than 2 tables to be 
+ Joined,then an inner join is not 
+ Recommended.An alternative to inner join is
+ For all entries.
+ For all entries will read the data from the 
+ Buffer.
+ For all entries is used to compare the 
+ Fields from the body of the internal table 
+ And not with the workarea.
+*&------------------------------------------------------
+---------------*
+*& Include ZBTCH8_INCLUDE
+*&------------------------------------------------------
+---------------*
+Types:Begin of ty_Ekko,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ End of ty_ekko,
+ Begin of ty_ekpo,
+ ebeln type ekpo-ebeln,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_ekpo,
+ Begin of ty_output,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_output.
+** data declarations
+Data:T_ekko type STANDARD TABLE OF ty_Ekko,
+ w_Ekko type ty_ekko,
+ T_ekpo type STANDARD TABLE OF ty_ekpo,
+ w_ekpo type ty_ekpo,
+ t_output type STANDARD TABLE OF ty_output,
+ w_output type ty_output.
+** for range of values
+Select-options:OrderNo for w_ekko-ebeln.
+An include must be called in the executable program.
+** call the include in the program here.
+include ZBtch8_include.
+*&---------------------------------------------------------------------
+*
+*& Report ZBTCH8_PURCHASE_FAE
+*&
+*&---------------------------------------------------------------------
+*
+*&
+*&
+*&---------------------------------------------------------------------
+*
+REPORT ZBTCH8_PURCHASE_FAE.
+** call the include in the program here.
+include ZBtch8_include.
+** initialization.
+INITIALIZATION.
+Clear:W_ekko,
+ w_ekpo,
+ w_output.
+refresh:t_ekko,
+ t_ekpo,
+ t_output.
+* providing the default values for the input field.
+Orderno-low = '3000000005'.
+orderno-high = '3000000100'.
+Append orderno.
+** at selection screen for validating the user input
+At SELECTION-SCREEN.
+** local variable that exists with in the program locall
+y
+Data:Lv_Ebeln type ekko-ebeln.
+Select Single Ebeln
+From Ekko
+Into lv_Ebeln
+Where Ebeln in Orderno.
+** Check for correctness.
+If Lv_ebeln is INITIAL."false.
+ Message 'Enter Correct Purchase Document Number' type
+'E'.
+Endif.
+** start-of-selection
+Start-of-selection.
+** Get the data from EKKO Table first.
+Select ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr from ekko
+ into table t_ekko
+ where ebeln in Orderno.
+** based on the condition of the key field is compared w
+ith
+** the other table key field
+If Sy-subrc = 0."true
+ Select ebeln
+ ebelp
+ matnr
+ matkl
+ netpr from ekpo
+ into table t_ekpo
+ for all entries in t_ekko
+ where ebeln = t_ekko-ebeln.
+endif.
+** read the data from both the internal tables and swap
+the
+** to the output table.
+Loop at t_ekko into w_ekko.
+ W_output-ebeln = w_ekko-ebeln.
+ w_output-ekorg = w_ekko-ekorg.
+ w_output-ekgrp = w_ekko-ekgrp.
+ w_output-bukrs = w_ekko-bukrs.
+ w_output-lifnr = w_ekko-lifnr.
+ Loop at t_ekpo into w_ekpo where ebeln = w_ekko-ebeln.
+ w_output-ebelp = w_ekpo-ebelp.
+ w_output-matnr = w_Ekpo-matnr.
+ w_output-matkl = w_ekpo-matkl.
+ w_output-netpr = w_ekpo-netpr.
+ append w_output to t_output.
+ endloop.
+endloop.
+** End-of-selection for displaying the output.
+End-of-selection.
+Sort t_output by ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr
+ ebelp
+ matnr
+ matkl
+ netpr ascending.
+Loop at t_output into w_output.
+ At First.
+ Write:/40 'Purchase Report' color 3.
+ Endat.
+ At New Ebeln.
+ Write:/ w_output-ebeln color 3.
+ Endat.
+ Write:/ w_output-ekorg color 4,
+ w_output-ekgrp color 4,
+ w_output-bukrs color 4,
+ w_output-lifnr color 4,
+ w_output-ebelp color 4,
+ w_output-matnr color 4,
+ w_output-matkl color 4,
+ w_output-netpr color 4.
+** for sub totals
+ Format color 3.
+ At End of Ebeln.
+ Sum.
+ Write:/ w_output-netpr under w_output-netpr.
+ Endat.
+** for Grand totals.
+At Last.
+ Sum.
+ Write:/ w_output-netpr under w_output-netpr.
+Endat.
+endloop.
+An Example using For all entries for Purchase Tables 
+Types:Begin of ty_Ekko,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ End of ty_ekko,
+ Begin of ty_ekpo,
+ ebeln type ekpo-ebeln,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_ekpo,
+ Begin of ty_lfa1,
+ Lifnr type lfa1-lifnr,
+ Name1 type lfa1-name1,
+ Ort01 type lfa1-ort01,
+ Land1 type lfa1-land1,
+ End of ty_lfa1,
+ 
+ Begin of ty_output,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ Name1 type lfa1-name1,
+ Ort01 type lfa1-ort01,
+ Land1 type lfa1-land1,
+ End of ty_output.
+INITIALIZATION.
+Clear:W_ekko,
+ W_ekpo,
+ w_lfa1,
+ w_output.
+refresh:T_ekko,
+ t_Ekpo,
+ t_lfa1,
+ t_output.
+** at selection-screen for validating the user input
+At SELECTION-SCREEN.
+ Data:Lv_Ebeln type ekko-ebeln.
+ Select Single Ebeln
+ From Ekko
+ Into Lv_Ebeln
+ where ebeln in Orderno.
+** check for correctness.
+ If LV_ebeln is INITIAL.
+ Message 'Enter Correct Purchase OrderNo' type 'E'.
+ Endif.
+* get the data from Ekko Table.
+Start-of-selection.
+ Select Ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr from ekko
+ into table t_ekko
+ where ebeln in orderno.
+* based on common field get the data from the ekpo table
+ If sy-subrc = 0.
+ Select ebeln
+ ebelp
+ matnr
+ matkl
+ netpr from ekpo
+ into table t_Ekpo
+ for all entries in t_Ekko
+ where ebeln = t_Ekko-ebeln.
+ endif.
+** whenever there is situation where there are multiple
+records for data retreival,
+** the table that contains many records must be looped f
+irst and the table that
+** contains a single record must be read .
+Loop at t_ekpo into w_ekpo.
+ W_output-ebelp = w_ekpo-ebelp.
+ w_output-matnr = w_ekpo-matnr.
+ w_output-matkl = w_ekpo-matkl.
+ w_output-netpr = w_ekpo-netpr.
+ Read table t_ekko into w_ekko with key ebeln = w_ekpo￾ebeln BINARY SEARCH.
+ w_output-ebeln = w_Ekko-ebeln.
+ w_output-ekorg = w_ekko-ekorg.
+ w_output-ekgrp = w_Ekko-ekgrp.
+ w_output-bukrs = w_ekko-bukrs.
+ w_output-lifnr = w_ekko-lifnr.
+ Read table t_lfa1 into w_lfa1 with key lifnr = w_ekko￾ebeln BINARY SEARCH.
+ w_output-name1 = w_lfa1-name1.
+ w_output-ort01 = w_lfa1-ort01.
+ w_output-land1 = w_lfa1-land1.
+ Append w_output to t_output.
+endloop.
+Sort t_output by ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr
+ ebelp
+ matnr
+ matkl
+ netpr
+ name1
+ ort01
+ land1 ascending.
+ Loop at t_output into w_output.
+ At First.
+ Write:/35 'Purchase Report' color 5.
+ Endat.
+ At new Ebeln.
+ Write:/ w_output-ebeln color 3.
+ endat.
+ Write:/ w_output-ekorg color 4,
+ w_output-ekgrp color 4,
+ w_output-bukrs color 4,
+ w_output-lifnr color 4,
+ w_output-ebelp color 4,
+ w_output-matnr color 4,
+ w_output-matkl color 4,
+ w_output-netpr color 4,
+ w_output-name1 color 4,
+ w_output-ort01 color 4,
+ w_output-land1 color 4.
+** for sub totals
+ Format color 3.
+ AT end of Ebeln.
+ Sum.
+ Write:/ w_output-netpr under w_output-netpr.
+ Endat.
+** for Grand totals
+ AT last.
+ Sum.
+ Write:/ w_output-netpr under w_output-netpr.
+ Endat.
+endloop.
+Sub Routines 
+Sub Routines are reusable objects where once created can 
+be used by other objects.There are 2 types of Sub 
+routines.
+Sub routines that are called within the program are 
+called as Internal Sub routines and the sub routines 
+that are called outside are called as External Sub 
+routines.
+A Sub routine is called in the program with the 
+following syntax:
+PERFORM <Sub_routinename>.
+<Sub_routinename> is the name of the sub routine.
+PERFORM is the keyword that defines the sub routine.
+The implementation of the sub routine is done with the 
+following syntax:
+FORM <Sub_routinename>.
+For ex:
+PERFORM Sub_Validate.
+Sub_Validate is the name of the sub routine.
+The implementation of the sub routine Sub_Validate has 
+the following syntax:
+PERFORM Sub_Validate – Calling or defining the sub 
+routine
+FORM Sub_Validate.
+ENDFORM.
+Classical report for all entries using Sub routines.
+s
+Include program.
+*&------------------------------------------------------
+---------------*
+*& Include ZBTCH8_INCLUDE
+*&------------------------------------------------------
+---------------*
+Types:Begin of ty_Ekko,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ End of ty_ekko,
+ Begin of ty_ekpo,
+ ebeln type ekpo-ebeln,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_ekpo,
+ Begin of ty_lfa1,
+ Lifnr type lfa1-lifnr,
+ Name1 type lfa1-name1,
+ Ort01 type lfa1-ort01,
+ Land1 type lfa1-land1,
+ End of ty_lfa1,
+ 
+ Begin of ty_output,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ Name1 type lfa1-name1,
+ Ort01 type lfa1-ort01,
+ Land1 type lfa1-land1,
+ End of ty_output.
+** data declarations
+Data:T_ekko type STANDARD TABLE OF ty_Ekko,
+ w_Ekko type ty_ekko,
+ T_ekpo type STANDARD TABLE OF ty_ekpo,
+ w_ekpo type ty_ekpo,
+ T_lfa1 type standard table of ty_lfa1,
+ W_lfa1 type ty_lfa1,
+ t_output type STANDARD TABLE OF ty_output,
+ w_output type ty_output.
+** for range of values
+Select-options:OrderNo for w_ekko-ebeln.
+Program using for all entries with sub routines.
+*&------------------------------------------------------
+---------------*
+*& Report ZBTCH8_FAE_PURCHASE_ROUTINES
+*&
+*&------------------------------------------------------
+---------------*
+*&
+*&
+*&------------------------------------------------------
+---------------*
+REPORT ZBTCH8_FAE_PURCHASE_ROUTINES.
+** call the include in the program.
+INCLUDE Zbtch8_include1.
+INITIALIZATION.
+Clear:W_ekko,
+ W_ekpo,
+ w_lfa1,
+ w_output.
+refresh:T_ekko,
+ t_Ekpo,
+ t_lfa1,
+ t_output.
+** at selection-screen for validating the user input
+At SELECTION-SCREEN.
+PERFORM Sub_Validate.
+Apply the same for all the subroutines defined in the 
+program.
+** Start-of-selection.
+START-OF-SELECTION.
+PERFORM Sub_GetData.
+PERFORM Sub_Move.
+End-of-selection.
+PERFORM Sub_Display.
+*&------------------------------------------------------
+---------------*
+*& Form SUB_VALIDATE
+*&------------------------------------------------------
+---------------*
+* text
+*-------------------------------------------------------
+---------------*
+* --> p1 text
+* <-- p2 text
+*-------------------------------------------------------
+---------------*
+FORM SUB_VALIDATE .
+ Data:Lv_Ebeln type ekko-ebeln.
+ Select Single Ebeln
+ From Ekko
+ Into Lv_Ebeln
+ where ebeln in Orderno.
+** check for correctness.
+ If LV_ebeln is INITIAL.
+ Message 'Enter Correct Purchase OrderNo' type 'E'.
+ Endif.
+ENDFORM. " SUB_VALIDATE
+*&------------------------------------------------------
+---------------*
+*& Form SUB_GETDATA
+*&------------------------------------------------------
+---------------*
+* text
+*-------------------------------------------------------
+---------------*
+* --> p1 text
+* <-- p2 text
+*-------------------------------------------------------
+---------------*
+FORM SUB_GETDATA .
+* get the data from Ekko Table.
+ Select Ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr from ekko
+ into table t_ekko
+ where ebeln in orderno.
+* based on common field get the data from the ekpo table
+ If sy-subrc = 0.
+ Select ebeln
+ ebelp
+ matnr
+ matkl
+ netpr from ekpo
+ into table t_Ekpo
+ for all entries in t_Ekko
+ where ebeln = t_Ekko-ebeln.
+ endif.
+ENDFORM. " SUB_GETDATA
+*&------------------------------------------------------
+---------------*
+*& Form SUB_MOVE
+*&------------------------------------------------------
+---------------*
+* text
+*-------------------------------------------------------
+---------------*
+* --> p1 text
+* <-- p2 text
+*-------------------------------------------------------
+---------------*
+FORM SUB_MOVE .
+** whenever there is situation where there are multiple
+records for data retreival,
+** the table that contains many records must be looped f
+irst and the table that
+** contains a single record must be read .
+Loop at t_ekpo into w_ekpo.
+ W_output-ebelp = w_ekpo-ebelp.
+ w_output-matnr = w_ekpo-matnr.
+ w_output-matkl = w_ekpo-matkl.
+ w_output-netpr = w_ekpo-netpr.
+ Read table t_ekko into w_ekko with key ebeln = w_ekpo￾ebeln BINARY SEARCH.
+ w_output-ebeln = w_Ekko-ebeln.
+ w_output-ekorg = w_ekko-ekorg.
+ w_output-ekgrp = w_Ekko-ekgrp.
+ w_output-bukrs = w_ekko-bukrs.
+ w_output-lifnr = w_ekko-lifnr.
+ Read table t_lfa1 into w_lfa1 with key lifnr = w_ekko￾ebeln BINARY SEARCH.
+ w_output-name1 = w_lfa1-name1.
+ w_output-ort01 = w_lfa1-ort01.
+ w_output-land1 = w_lfa1-land1.
+ Append w_output to t_output.
+endloop.
+ENDFORM. " SUB_MOVE
+*&------------------------------------------------------
+---------------*
+*& Form SUB_DISPLAY
+*&------------------------------------------------------
+---------------*
+* text
+*-------------------------------------------------------
+---------------*
+* --> p1 text
+* <-- p2 text
+*-------------------------------------------------------
+---------------*
+FORM SUB_DISPLAY .
+ Sort t_output by ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr
+ ebelp
+ matnr
+ matkl
+ netpr
+ name1
+ ort01
+ land1 ascending.
+ Loop at t_output into w_output.
+ At First.
+ Write:/35 'Purchase Report' color 5.
+ Endat.
+ At new Ebeln.
+ Write:/ w_output-ebeln color 3.
+ endat.
+ Write:/ w_output-ekorg color 4,
+ w_output-ekgrp color 4,
+ w_output-bukrs color 4,
+ w_output-lifnr color 4,
+ w_output-ebelp color 4,
+ w_output-matnr color 4,
+ w_output-matkl color 4,
+ w_output-netpr color 4,
+ w_output-name1 color 4,
+ w_output-ort01 color 4,
+ w_output-land1 color 4.
+** for sub totals
+ Format color 3.
+ AT end of Ebeln.
+ Sum.
+ Write:/ w_output-netpr under w_output-netpr.
+ Endat.
+** for Grand totals
+ AT last.
+ Sum.
+ Write:/ w_output-netpr under w_output-netpr.
+ Endat.
+endloop.
+ENDFORM. " SUB_DISPLAY
+Output.
+AT first
+AT new 
+ebeln
+At End of 
+ebeln
+At Last.
+Interactive Reports 
+Interactive reports are those reports where navigation takes 
+place from screen to another screen. The classical reports 
+are static in nature(fixed) in output whereas interactive 
+reports are dynamic in nature. Screen to screen navigation 
+is possible .The first output screen is called as Basic
+List, the second output screen is called as First Primary 
+list and so on.A Maximum of 20 screens navigation is 
+possible in these reports.
+The following are the events in an Interactive Reports:
+1) At line selection triggers when any column in the row is 
+selected and navigates to next screen.
+2) At User-command triggers when a button is clicked and 
+further action is to be taken.
+3) Set Pf-status is used for creating GUI Status.
+4) Top-of-page during line-selection is used for providing 
+the Column headings in the interactive lists.
+ Hide and Get Cursor are the methods used in Interactive 
+reports.
+*&----------------------------------------------------------
+-----------*
+*& Report ZBTCH8DEMO1
+*&
+*&----------------------------------------------------------
+-----------*
+*&
+*&
+*&----------------------------------------------------------
+-----------*
+REPORT ZBTCH8DEMO1.
+** Types declaration
+Types:Begin of ty_Ekko,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ End of ty_ekko,
+ Begin of ty_ekpo,
+ ebeln type ekpo-ebeln,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_Ekpo.
+** data declarations
+Data:T_ekko type STANDARD TABLE OF ty_Ekko,
+ w_ekko type ty_ekko,
+ t_ekpo type STANDARD TABLE OF ty_ekpo,
+ w_Ekpo type ty_ekpo.
+** to provide a range of values
+Select-options:orderno for w_ekko-ebeln.
+** initialization for assigning the default values
+INITIALIZATION.
+Clear:W_ekko,
+ w_ekpo.
+refresh:T_ekko,
+ t_ekpo.
+* at selection screen for validating user input
+at selection-screen.
+select ebeln
+ from ekko into table t_ekko
+ where ebeln in orderno.
+If Sy-subrc <> 0.
+ Message 'Enter Correct Purchase Document No' type 'E'.
+Endif.
+**start-of-selection for getting the data from the table
+start-of-selection.
+Select ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr from ekko into table t_ekko
+ where ebeln in orderno.
+Loop at t_ekko into w_Ekko.
+ Write:/ w_ekko-ebeln color 3 HOTPSPOT,
+ w_ekko-ekorg color 4,
+ w_ekko-ekgrp color 4,
+ w_ekko-bukrs color 4,
+ w_ekko-lifnr color 4.
+** Hide Stores the selected value in memory.
+ Hide:w_Ekko-ebeln.
+endloop.
+* at line 
+selection which triggers when any column in the row is selec
+ted * and navigates to next screen.
+At LINE-SELECTION.
+Case Sy-lsind.
+** lsind is the system field that identifies the list index
+ When '1'.
+ Select ebeln
+ ebelp
+ matnr
+ matkl
+ netpr from ekpo
+ into table t_ekpo
+ where ebeln = w_ekko-ebeln.
+ Loop at t_ekpo into w_ekpo.
+ Write:/ w_ekpo-ebeln color 3,
+ 12 w_ekpo-ebelp color 4,
+ 22 w_ekpo-matnr color 4,
+ 40 w_ekpo-matkl color 4,
+ 50 w_ekpo-netpr color 4.
+At End of Ebeln.
+ Sum.
+ Write:/ w_ekpo-netpr under w_ekpo-netpr color 6.
+ Endat.
+ endloop.
+ endcase.
+* Top-of-page during line￾selection for providing the column headings in the
+* interactive reports
+Top-of-page DURING LINE-SELECTION.
+ Case Sy-lsind.
+ When '1'.
+ Format color 3.
+ Write:/ 'OrderNo',
+ 12 'PItem',
+ 22 'MatNo',
+ 40 'MatGrp',
+ 50 'NetPrice'.
+ Uline.
+ Endcase.
+ 14.05.2019
+ Interactive Report using Get cursor method.
+ A Message class is a class on container that stores the list of all messages
+ Or that handles the exceptional handling in the program.
+ SE91 is the transaction code for Creating messages class.
+ 999 messages can be created in a single message class.
+ There are different types of message types:
+ I --- Information message
+ W --- Warning message 
+ X --- Run time message 
+ A --- Abbend message 
+ S --- Status message 
+ E --- Error message 
+All the messages are stored in the table T100.
+ 
+ *&---------------------------------------------------------
+------------*
+*& Report ZBTCH8_INTERACTIVE_GETCURSOR1
+*&
+*&----------------------------------------------------------
+-----------*
+*&
+*&
+*&----------------------------------------------------------
+-----------*
+REPORT ZBTCH8_INTERACTIVE_GETCURSOR1
+ Message-ID ZDEMO_MSG.
+** Types Declarations
+Types: BEGIN OF TY_EKKO,
+ EBELN TYPE EKKO-EBELN,
+ EKORG TYPE EKKO-EKORG,
+ EKGRP TYPE EKKO-EKGRP,
+ BUKRS TYPE EKKO-BUKRS,
+ LIFNR TYPE EKKO-LIFNR,
+ END OF TY_EKKO,
+ Begin of ty_Ekpo,
+ ebeln type ekpo-ebeln,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_ekpo.
+** 2) Data declarations
+Data:T_ekko type STANDARD TABLE OF ty_ekko,
+ w_Ekko type ty_ekko,
+ T_ekpo type STANDARD TABLE OF ty_ekpo,
+ w_Ekpo type ty_ekpo,
+** for field name and field valud
+ G_Fnam(15) type c,"field name
+ G_Fval type ekko-ebeln."field value
+Select-options:orderno for w_ekko-ebeln.
+** initialization.
+INITIALIZATION.
+Clear:W_ekko,
+ w_ekpo.
+refresh:T_ekko,
+ t_ekpo.
+** at selection screen for validating the user input
+at selection-SCREEN.
+ 
+Data:lv_ebeln type ekko-ebeln.
+ 
+Select Single Ebeln
+From ekko
+into lv_Ebeln
+where ebeln in orderno.
+ 
+** check for correctness
+If Sy-subrc <> 0.
+ 
+ Message E000(ZDEMO_MSG).
+ 
+Endif.
+E --- Error message
+000 – Message number
+ZDEMO_MSG is the name of the message class.
+Provide the short description 
+Give the message text in 000.
+Click on Messages Tab.
+** start-of-selection.
+START-OF-SELECTION.
+Set PF-STATUS 'ZDEMO_STATUS'.
+Select ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr from ekko
+ into table t_ekko
+ where ebeln in orderno.
+Loop at t_ekko into w_ekko.
+ Write:/ w_Ekko-ebeln color 3,
+ w_Ekko-ekorg color 4,
+ w_ekko-ekgrp color 4,
+ w_ekko-bukrs color 4,
+ w_ekko-lifnr color 4.
+endloop.
+Double click on ZDEMO_STATUS
+Goto Function keys and provide BACK button.
+Click on Application toolbar.
+Double click on ITEM 
+Select any one of the function keys and continue.
+And Activate.
+** at user￾command triggers when a button is clicked and further
+** action is to be taken.
+At USER-COMMAND.
+ Case Sy-ucomm.
+ When 'ITEM'.
+ Get Cursor Field G_fnam Value G_Fval.
+ If G_fnam = 'W_EKKO-EBELN'.
+ Select Ebeln
+ ebelp
+ matnr
+ matkl
+ netpr from ekpo
+ into table t_Ekpo
+ where ebeln = G_Fval.
+ Loop at t_ekpo into w_ekpo.
+ Write:/ w_ekpo-ebeln color 3,
+ w_ekpo-ebelp color 4,
+ w_ekpo-matnr color 4,
+ w_ekpo-matkl color 4,
+ w_ekpo-netpr color 4.
+ endloop.
+ Endif.
+ Endcase.
+16.09.2019
+Calling the transaction in Get Cursor method
+When the user double clicks on a particular purchase 
+orderno,the corresponding Purchase Order Transaction
+(ME23N) should be called.
+Go to Set PF-STATUS 'ZSTATUS1'.
+Replace the F2 Function with PICK as keyword.
+Activate the Status.
+** at Line-selection
+At line-selection.
+ 
+Get Cursor Field G_Fnam Value G_Fval.
+ 
+Set PARAMETER ID 'BES' field G_Fval.
+*&------------------------------------------------------
+---------------*
+*& Report ZBTCH8DEMO1
+*&
+*&------------------------------------------------------
+---------------*
+*&
+*&
+*&------------------------------------------------------
+---------------*
+REPORT ZBTCH8_GETCURSOR.
+** Types declaration
+Types:Begin of ty_Ekko,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ End of ty_ekko,
+ Begin of ty_ekpo,
+ ebeln type ekpo-ebeln,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_Ekpo.
+** data declarations
+Data:T_ekko type STANDARD TABLE OF ty_Ekko,
+ w_ekko type ty_ekko,
+ t_ekpo type STANDARD TABLE OF ty_ekpo,
+ w_Ekpo type ty_ekpo,
+ G_Fnam(15) type c,
+ G_Fval type ekko-ebeln.
+** to provide a range of values
+Select-options:orderno for w_ekko-ebeln.
+** initialization for assigning the default values
+INITIALIZATION.
+Clear:W_ekko,
+ w_ekpo.
+refresh:T_ekko,
+ t_ekpo.
+* at selection screen for validating user input
+at selection-screen.
+select ebeln
+ from ekko into table t_ekko
+ where ebeln in orderno.
+If Sy-subrc <> 0.
+ Message 'Enter Correct Purchase Document No' type 'E'.
+Endif.
+**start-of-selection for getting the data from the table
+start-of-selection.
+Set Pf-Status 'ZSTATUS1'.
+Select ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr from ekko into table t_ekko
+ where ebeln in orderno.
+Loop at t_ekko into w_Ekko.
+ Write:/ w_ekko-ebeln color 3,
+ w_ekko-ekorg color 4,
+ w_ekko-ekgrp color 4,
+ w_ekko-bukrs color 4,
+ w_ekko-lifnr color 4.
+endloop.
+At user-command.
+ Case Sy-Ucomm.
+ When 'ITEM'.
+ Get Cursor field g_Fnam value g_Fval.
+ If G_Fnam = 'W_EKKO-EBELN'.
+ Select ebeln
+ ebelp
+ matnr
+ matkl
+ netpr from ekpo
+ into table t_ekpo
+ where ebeln = g_Fval.
+ Loop at t_ekpo into w_ekpo.
+ Write:/ w_ekpo-ebeln color 3,
+ 12 w_ekpo-ebelp color 4,
+ 22 w_ekpo-matnr color 4,
+ 40 w_ekpo-matkl color 4,
+ 50 w_ekpo-netpr color 4.
+ At End of Ebeln.
+ Sum.
+ Write:/ w_ekpo-netpr under w_ekpo-netpr color 6.
+ Endat.
+ endloop.
+ endif.
+ endcase.
+* Top-of-page during line￾selection for providing the column headings in the
+* interactive reports
+Top-of-page DURING LINE-SELECTION.
+ Case Sy-lsind.
+ When '1'.
+ Format color 3.
+ Write:/ 'OrderNo',
+ 12 'PItem',
+ 22 'MatNo',
+ 40 'MatGrp',
+ 50 'NetPrice'.
+ Uline.
+ Endcase.
+ 
+** at Line-selection
+At line-selection.
+ 
+Get Cursor Field G_Fnam Value G_Fval.
+ 
+Set PARAMETER ID 'BES' field G_Fval.
+ 
+Call Transaction 'ME23N' and SKIP FIRST SCREEN.
+ 
+Radio buttons using Screen Structure
+*&------------------------------------------------------
+---------------*
+*& Report ZBTCH8_RADIOBUTTONS_SCREEN
+*&
+*&------------------------------------------------------
+---------------*
+*&
+*&
+*&------------------------------------------------------
+---------------*
+REPORT ZBTCH8_RADIOBUTTONS_SCREEN.
+** this program demonstrates the functionality of the ra
+diobuttons using
+** structures SCREEN.
+** data declarations
+Data:G_Ebeln type ekko-ebeln,
+ G_ekorg type ekko-ekorg.
+** First Selection screen
+SELECTION-CREEN Begin of Block B1 WITH FRAME title text-
+000.
+ Select-options:Orderno for G_Ebeln modif ID A1,
+ Orgn for G_ekorg modif ID A2.
+SELECTION-SCREEN End of Block B1.
+SELECTION-SCREEN Skip 1.
+SCREEN Begin of Block B2 WITH FRAME title text-001.
+ PARAMETERS:P1 RADIOBUTTON GROUP RG1 USER-COMMAND U1,
+ P2 RADIOBUTTON GROUP RG1.
+SELECTION-SCREEN End of Block B2.
+** initialization.
+INITIALIZATION.
+P1 = 'X'.
+** at selection￾screen output is the event which controls the screen ele
+ments in the output.
+At SELECTION-SCREEN output.
+Loop at Screen.
+ If Screen-Group1 = 'A1'.
+ If P1 = 'X'.
+ Screen-Input = 1."active or editable
+ else.
+ Screen-input = 0."inactive or non editable
+ endif.
+ MODIFY SCREEN."modifies the screen contents in the
+output.
+ elseif Screen-Group1 = 'A2'.
+ If P2 = 'X'.
+ Screen-input = 1.
+ else.
+ Screen-input = 0.
+ endif.
+ MODIFY SCREEN."modifies the screen contents in the
+output.
+ endif.
+endloop.
+17.09.2019
+Demo on Radiobuttons using Screen Fields structure
+Screen Fields is the 
+structure that holds the 
+information about creating 
+the buttons in the 
+application tool bar.
+Using the structure 
+sscrfields,we can create 5 
+push buttons only.
+The buttons in the toolbar 
+are defined as Selection 
+screen function keys.so 5 
+functions key can be 
+created.
+*&------------------------------------------------------
+---------------*
+*& Report ZBTCH8_RADIOBUTTONS_SSCRFIELDS
+*&
+*&------------------------------------------------------
+---------------*
+*&
+*&
+*&------------------------------------------------------
+---------------*
+REPORT ZBTCH8_RADIOBUTTONS_SSCRFIELDS.
+** Types Declaration
+Types:Begin of ty_Ekko,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ End of ty_ekko,
+ Begin of ty_ekpo,
+ ebeln type ekpo-ebeln,
+ ebelp type ekpo-ebelp,
+ matnr type ekpo-matnr,
+ matkl type ekpo-matkl,
+ netpr type ekpo-netpr,
+ End of ty_ekpo,
+ Begin of ty_lfa1,
+ lifnr type lfa1-lifnr,
+ name1 type lfa1-name1,
+ ort01 type lfa1-ort01,
+ land1 type lfa1-land1,
+ End of ty_lfa1.
+** Call the structure screen fields
+Tables:Sscrfields.
+** data declarations
+Data:T_ekko type STANDARD TABLE OF ty_ekko,
+ w_ekko type ty_ekko,
+ T_ekpo type STANDARD TABLE OF ty_ekpo,
+ w_ekpo type ty_ekpo,
+ T_lfa1 type STANDARD TABLE OF ty_lfa1,
+ w_lfa1 type ty_lfa1.
+** selection screen
+SELECTION￾SCREEN Begin of Block B1 with frame title text-000.
+ Parameters:Header RADIOBUTTON GROUP RG1,
+ Items RADIOBUTTON GROUP RG1,
+ Vendor RADIOBUTTON GROUP RG1.
+SELECTION-SCREEN End of Block B1.
+** initialization.
+INITIALIZATION.
+** the buttons in the toolbar are defined as function ke
+ys.
+SELECTION-SCREEN FUNCTION KEY 1.
+SELECTION-SCREEN FUNCTION KEY 2.
+** assign the labels to the buttons
+"label for the first push button
+Sscrfields-functxt_01 = 'Display'.
+"label for the second push button
+sscrfields-functxt_02 = 'Exit'.
+** at selection screen.
+at SELECTION-SCREEN.
+** be default the two buttons does not contain any funct
+ionality on its
+** own.so we have to transfer the execute button functio
+nality to
+** display and exit button
+If sscrfields-ucomm = 'FC01'."function code for display
+ sscrfields￾ucomm = 'ONLI'."function code for execute button
+elseif sscrfields￾ucomm = 'FC02'."function code for exit button
+ leave program."leaves the screen
+endif.
+** Start-of-selection.
+START-OF-SELECTION.
+If Header = 'X'."if first radiobutton is selected
+ Select ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr from ekko
+ into table t_ekko
+ up to 100 rows.
+ Loop at t_ekko into w_ekko.
+ Write:/ w_ekko-ebeln color 3,
+ w_ekko-ekorg color 4,
+ w_ekko-ekgrp color 4,
+ w_ekko-bukrs color 4,
+ w_ekko-lifnr color 4.
+ endloop.
+elseif Items = 'X'.
+ Select ebeln
+ ebelp
+ matnr
+ matkl
+ netpr from ekpo into table
+ t_ekpo up to 100 rows.
+ Loop at t_ekpo into w_ekpo.
+ Write:/ w_ekpo-ebeln color 3,
+ w_ekpo-ebelp color 4,
+ w_ekpo-matnr color 4,
+ w_ekpo-matkl color 4,
+ w_ekpo-netpr color 4.
+ endloop.
+else.
+ Select lifnr
+ name1
+ ort01
+ land1 from lfa1
+ into table t_lfa1
+ up to 100 rows.
+ Loop at t_lfa1 into w_lfa1.
+ Write:/ w_lfa1-lifnr color 3,
+ w_lfa1-name1 color 4,
+ w_lfa1-ort01 color 4,
+ w_lfa1-land1 color 4.
+ endloop.
+endif.
+20.05.2019
+Function Modules 
+Function modules are reusable objects where once created 
+can be used by other objects.Function Builder is the 
+tool for creating function modules.A Function group 
+needs to be created before creating a function module.
+99 function modules can be created in a single function
+group.There are seven tabs in a function module.
+1) Attributes defines the type of function module.
+2) Import defines the Input that is passed in the 
+ function module.
+3) Export defines the return parameter in the function 
+ module.
+4) Changing defines the result and return parameter and
+ that changes in run time.
+5) Tables defines the internal table parameter that is 
+ defined in the function module.
+6) Exceptions defines the error handling mechanism in 
+ function module.
+7) Source Code defines the code to be written for the 
+ interface in the function module.
+Note:When the function module is called in the 
+program,the import becomes the export parameter and the 
+export becomes the import parameter.
+Function Module for Addition
+1) Go to SE80 and select function group in the list box 
+Right click on Function Group Activate and Create a 
+function module.
+Go to Source Code.
+FUNCTION ZFM_ADDITION.
+*"------------------------------------------------------
+----------------
+*"*"Local Interface:
+*" IMPORTING
+*" REFERENCE(A) TYPE I
+*" REFERENCE(B) TYPE I
+*" EXPORTING
+*" REFERENCE(SUM) TYPE I
+*"------------------------------------------------------
+----------------
+Sum = A + B.
+ENDFUNCTION.
+Click on Activate button and Test the function module.
+Import
+Export
+Call the function module in the program.
+REPORT ZBTCH8_CALLFM.
+** parameters for inputting the values-import
+Parameters:P1 type I,
+ P2 type I.
+ 
+** for export
+ 
+Data:Add type I.
+ 
+START-OF-SELECTION.
+Click on Pattern button and provide the function module
+name.
+CALL FUNCTION 'ZFM_ADDITION'
+ EXPORTING
+ A = P1
+ B = P2
+IMPORTING
+ SUM = Add
+ .
+*
+Write:/ 'The Addition of two numbers is',Add color 5.
+Function module for Purchase Details 
+Go to Source Code.
+FUNCTION ZFM_PURCHASE.
+*"------------------------------------------------------
+----------------
+*"*"Local Interface:
+*" IMPORTING
+*" REFERENCE(P_EBELN) TYPE EKKO-EBELN
+*" TABLES
+*" ITEMS STRUCTURE EKPO
+*"------------------------------------------------------
+----------------
+Select Ebeln
+ Ebelp
+ Matnr
+ Txz01
+ Matkl
+ Netpr from Ekpo
+ into CORRESPONDING FIELDS OF TABLE items
+ where ebeln = p_ebeln.
+ENDFUNCTION.
+24.05.2019
+Calling the function module in the program.
+*&------------------------------------------------------
+---------------*
+*& Report ZBTCH8_CALLFM1
+*&
+*&------------------------------------------------------
+---------------*
+REPORT ZBTCH8_CALLFM1.
+* for import
+PArameters:P_ebeln type ekko-ebeln.
+** for tables parameter
+Data:Items like ekpo occurs 0 WITH HEADER LINE.
+START-OF-SELECTION.
+CALL FUNCTION 'ZFM_PURCHASE'
+ EXPORTING
+ P_EBELN = p_ebeln
+ TABLES
+ ITEMS = items
+ .
+Loop at items.
+ Write:/ items-ebeln color 4,
+ items-ebelp color 4,
+ items-matnr color 4,
+ items-matkl color 4,
+ items-netpr color 4.
+endloop. 
+Creating Line Type and Table Type
+Line Type is a structure and table type is an internal 
+table.
+Steps for Creating a Line Type
+Go to SE11.
+and click on Create button.
+and click on Continue button
+and Activate the structure.
+Create the Table Type 
+and click on create button
+and continue.
+Activate the Table type.
+Create the function module for Purchase Details 
+go to tables tab 
+Line Type
+Go to source code and write the code.
+FUNCTION ZFM_PURCHASE1.
+*"------------------------------------------------------
+----------------
+*"*"Local Interface:
+*" IMPORTING
+*" REFERENCE(P_EBELN) TYPE EKKO-EBELN
+*" TABLES
+*" ITEMS TYPE ZBTCH8_RTYPE
+*"------------------------------------------------------
+----------------
+Select ekko~ebeln
+ ekko~ekorg
+ ekko~ekgrp
+ ekko~aedat
+ ekpo~ebelp
+ ekpo~matnr ekpo~matkl ekpo~netpr
+from ekko inner join ekpo on ekko~ebeln = ekpo~ebeln
+into table items where ekko~ebeln = p_Ebeln.
+ENDFUNCTION.
+Call the function module in the program
+*&------------------------------------------------------
+---------------*
+*& Report ZBTCH8_CALLFM2
+*&
+*&------------------------------------------------------
+---------------*
+*&
+*&
+*&------------------------------------------------------
+---------------*
+REPORT ZBTCH8_CALLFM2.
+** for import
+PArameters:P_ebeln type ekko-ebeln.
+** for tables
+Data:items type zbtch8_rtype,
+ w_items type zbtch8_ltype.
+START-OF-SELECTION.
+CALL FUNCTION 'ZFM_PURCHASE1'
+ EXPORTING
+ P_EBELN = p_Ebeln
+ TABLES
+ ITEMS = items
+ .
+Loop at items into w_items.
+ Write:/ w_items-ebeln color 4,
+ w_items-ekorg color 4,
+ w_items-ekgrp color 4,
+ w_items-aedat color 4,
+ w_items-ebelp color 4,
+ w_items-matnr color 4,
+ w_items-matkl color 4,
+ w_items-netpr color 4.
+endloop.
+ALV 
+ALV Stands for ABAP List Viewer which is a tool for 
+controlling the output of the program.It is very 
+difficult for the developer to write the code for 
+formatting the output like coloring,sorting etc.SAP has 
+provided a library called as SLIS(Standard list) that 
+contains all the declartions of ALV which are to be 
+mapped to the function modules mentioned below.The 
+following are some of the important parameters in SLIS 
+library.
+1) Field catalog --- all the fields must be added to the 
+ field catalog 
+2) Layout --- layout as to how the output must be 
+ displayed.
+3) Sorting --- how the field must be sorted.
+The parameters mentioned above must be mapped to the 
+standard function modules provided below:
+1) REUSE_ALV_LIST_DISPLAY---DISPLAYS THE OUTPUT IN A 
+ LIST FORMAT 
+2) REUSE_ALV_GRID_DISPLAY --- DISPLAYS THE OUTPUT IN A 
+ TABLE FORMAT 
+3) REUSE_ALV_HIERSEQ_LIST_DISPLAY --- DISPLAYS THE 
+ OUTPUT IN A HIERARCHIAL FORMAT 
+4) REUSE_ALV_COMMENTARY_WRITE --- DISPLAYS THE DATA IN 
+ THE HEADER 
+5) REUSE_ALV_POPUP_TO_SELECT --- DISPLAYS THE OUTPUT IN 
+ A POPUP.
+6) REUSE_ALV_BLOCK_LIST_INIT---INITIALIZES THE BLOCK
+7) REUSE_ALV_BLOCK_LIST_APPEND---APPENDS THE DATA IN THE
+ BLOCK.
+8) REUSE_ALV_BLOCK_LIST_DISPLAY---DISPLAYS THE OUTPUT 
+ IN A BLOCKED FORMAT.
+27.05.2019
+ALV Program using List Display
+*&------------------------------------------------------
+---------------*
+*& Report ZBTCH8_PURCHASE_ALV_LIST
+*&
+*&------------------------------------------------------
+---------------*
+*&
+*&
+*&------------------------------------------------------
+---------------*
+REPORT ZBTCH8_PURCHASE_ALV_LIST.
+** TYpes Declaration
+Types:Begin of ty_Ekko,
+ ebeln type ekko-ebeln,
+ ekorg type ekko-ekorg,
+ ekgrp type ekko-ekgrp,
+ bukrs type ekko-bukrs,
+ lifnr type ekko-lifnr,
+ aedat type ekko-aedat,
+ ernam type ekko-ernam,
+ zterm type ekko-zterm,
+ End of ty_ekko.
+** Call the type group for ALV
+Type-pools:Slis.
+** Data declarations
+Data:T_ekko type STANDARD TABLE OF ty_ekko,
+ w_ekko type ty_ekko,
+** for field catalog
+ T_Fcat type slis_t_Fieldcat_alv,"Body
+ w_Fcat type slis_fieldcat_alv,"Workare
+** for layout
+ W_layout type slis_layout_alv."Workarea
+Select-options:orderno for w_ekko-ebeln.
+INITIALIZATION.
+Clear w_Fcat.
+w_Fcat-col_pos = 1.
+w_Fcat-fieldname = 'EBELN'.
+w_Fcat-tabname = 'T_EKKO'.
+w_Fcat-seltext_m = 'OrderNo'.
+Append w_Fcat to t_Fcat.
+Clear w_Fcat.
+w_Fcat-col_pos = 2.
+w_Fcat-fieldname = 'EKORG'.
+w_Fcat-tabname = 'T_EKKO'.
+w_Fcat-seltext_m = 'Purch Orgn'.
+Append w_Fcat to t_Fcat.
+Clear w_Fcat.
+w_Fcat-col_pos = 3.
+w_Fcat-fieldname = 'EKGRP'.
+w_Fcat-tabname = 'T_EKKO'.
+w_Fcat-seltext_m = 'Purch Group'.
+Append w_Fcat to t_Fcat.
+Clear w_Fcat.
+w_Fcat-col_pos = 4.
+w_Fcat-fieldname = 'BUKRS'.
+w_Fcat-tabname = 'T_EKKO'.
+w_Fcat-seltext_m = 'Company Code'.
+Append w_Fcat to t_Fcat.
+Clear w_Fcat.
+w_Fcat-col_pos = 5.
+w_Fcat-fieldname = 'LIFNR'.
+w_Fcat-tabname = 'T_EKKO'.
+w_Fcat-seltext_m = 'Vendor No'.
+Append w_Fcat to t_Fcat.
+Clear w_Fcat.
+w_Fcat-col_pos = 6.
+w_Fcat-fieldname = 'AEDAT'.
+w_Fcat-tabname = 'T_EKKO'.
+w_Fcat-seltext_m = 'Created On'.
+Append w_Fcat to t_Fcat.
+Clear w_Fcat.
+w_Fcat-col_pos = 7.
+w_Fcat-fieldname = 'ERNAM'.
+w_Fcat-tabname = 'T_EKKO'.
+w_Fcat-seltext_m = 'Created By'.
+Append w_Fcat to t_Fcat.
+Clear w_Fcat.
+w_Fcat-col_pos = 8.
+w_Fcat-fieldname = 'ZTERM'.
+w_Fcat-tabname = 'T_EKKO'.
+w_Fcat-seltext_m = 'PayTerms'.
+Append w_Fcat to t_Fcat.
+w_layout-zebra = 'X'.
+Start-of-selection.
+select ebeln
+ ekorg
+ ekgrp
+ bukrs
+ lifnr
+ aedat
+ ernam
+ zterm from ekko
+ into table t_Ekko
+ where ebeln in orderno.
+** End-of-selection
+End-of-selection.
+CALL FUNCTION 'REUSE_ALV_LIST_DISPLAY'
+EXPORTING
+* I_INTERFACE_CHECK = ' '
+* I_BYPASSING_BUFFER =
+* I_BUFFER_ACTIVE = ' '
+* I_CALLBACK_PROGRAM = ' '
+* I_CALLBACK_PF_STATUS_SET = ' '
+* I_CALLBACK_USER_COMMAND = ' '
+* I_STRUCTURE_NAME =
+ IS_LAYOUT = w_layout
+ IT_FIELDCAT = t_Fcat
+* IT_EXCLUDING =
+* IT_SPECIAL_GROUPS =
+* IT_SORT =
+* IT_FILTER =
+* IS_SEL_HIDE =
+* I_DEFAULT = 'X'
+* I_SAVE = ' '
+* IS_VARIANT =
+* IT_EVENTS =
+* IT_EVENT_EXIT =
+* IS_PRINT =
+* IS_REPREP_ID =
+* I_SCREEN_START_COLUMN = 0
+* I_SCREEN_START_LINE = 0
+* I_SCREEN_END_COLUMN = 0
+* I_SCREEN_END_LINE = 0
+* IR_SALV_LIST_ADAPTER =
+* IT_EXCEPT_QINFO =
+* I_SUPPRESS_EMPTY_DATA = ABAP_FALSE
+* IMPORTING
+* E_EXIT_CAUSED_BY_CALLER =
+* ES_EXIT_CAUSED_BY_USER =
+ TABLES
+ T_OUTTAB = t_ekko
+* EXCEPTIONS
+* PROGRAM_ERROR = 1
+* OTHERS = 2
+ .
+IF SY-SUBRC <> 0.
+* Implement suitable error handling here
+ENDIF.
