@@ -1,1 +1,21 @@
+Properties of VALUE operator ( constructor Operater) 
 
+Constructs a value for specified type. 
+
+Constructs an internal value for any data type. 
+
+Constructs a structure with values. 
+
+Types: Generic (#) and Non-generic data type (table type). 
+
+Support of other operators/Keywords. 
+
+Avoid Short Dump. 
+
+Step size in the debugging mode. 
+
+Assign Values to nested structure. 
+
+Base and lines of. 
+
+Value with For Iteration 
