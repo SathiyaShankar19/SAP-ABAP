@@ -4,15 +4,25 @@ They differ primarily in how they handle existing versus new records based on pr
 
 1.INSERT
 ---------
-The INSERT statement is used to add new records to a database table. 
+INSERT - inserts a new record. INSERT expects that a record with the required key does NOT exist in the table. 
+Therefore, if a record with the same key already exists, a runtime error occurs. 
+For more details on INSERT
 
 2. UPDATE
 ----------
-The UPDATE statement is used to change existing records in a database table. 
+update an existing record. UPDATE expects that a record with required key exists in the table. If a record with the required key does not exist, 
+it issue an error (sy-subrc is 4). For more details on UPDATE
 3. MODIFY
 ---------
-The MODIFY statement is a hybrid of INSERT and UPDATE. 
+acts like a combination of INSERT and UPDATE. If a record with the specified key does not exist, it adds it to the table. If a record with the specified key does exist, it modifies it. So MODIFY actually acts like 
+"Insert or change record". To read more about MODIFY
 
+________________________________________
+To summarize:
+INSERT - adds a new record to the table. If the row (key) exists, issues an error.
+UPDATE - updates an existing record to the table. If the row (key) does not exist, issues an error.
+MODIFY - If the key exists, modifies the record. If the key does not exist, adds the record to the
+_________________________________________________________________________________________________
 TABLES : zteam24_02.
 
 ** syntax I
