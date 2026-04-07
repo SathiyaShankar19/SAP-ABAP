@@ -1,4 +1,17 @@
 
+In SAP ABAP, INSERT, UPDATE, and MODIFY are Open SQL statements used to manage data in database tables. 
+They differ primarily in how they handle existing versus new records based on primary keys. 
+
+1.INSERT
+---------
+The INSERT statement is used to add new records to a database table. 
+
+2. UPDATE
+----------
+The UPDATE statement is used to change existing records in a database table. 
+3. MODIFY
+---------
+The MODIFY statement is a hybrid of INSERT and UPDATE. 
 
 TABLES : zteam24_02.
 
