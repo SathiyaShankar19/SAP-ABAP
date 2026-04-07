@@ -1,0 +1,82 @@
+
+
+TABLES : zteam24_02.
+
+** syntax I
+*
+*zteam24_02-zst_id   = '05'.
+*zteam24_02-zst_name = 'Lux'.
+*zteam24_02-zst_dept = 'EEE'.
+*zteam24_02-zst_mark = '85'.
+*INSERT zteam24_02.
+*IF sy-subrc EQ 0.
+*  MESSAGE 'Inserted successfully' TYPE 'I'.
+*ELSE.
+*  MESSAGE ' Not inserted ' TYPE 'I'.
+*ENDIF.
+
+*
+*** syntax II
+*DATA: wa_team24  TYPE zteam24_02.
+*
+*wa_team24-zst_id   = '06'.
+*wa_team24-zst_name = 'Poorni'.
+*wa_team24-zst_dept = 'EEE'.
+*wa_team24-zst_mark = '98'.
+*INSERT zteam24_02 FROM wa_team24.
+*IF sy-subrc EQ 0.
+*  MESSAGE 'Inserted successfully' TYPE 'I'.
+*ELSE.
+*  MESSAGE ' Not inserted ' TYPE 'I'.
+*ENDIF.
+
+
+*** syntax III
+*DATA: wa_team24  TYPE zteam24_02.
+*
+*wa_team24-zst_id   = '07'.
+*wa_team24-zst_name = 'Mani'.
+*wa_team24-zst_dept = 'EEE'.
+*wa_team24-zst_mark = '55'.
+*INSERT INTO zteam24_02 VALUES wa_team24.
+*IF sy-subrc EQ 0.
+*  MESSAGE 'Inserted successfully' TYPE 'I'.
+*ELSE.
+*  MESSAGE ' Not inserted ' TYPE 'I'.
+*ENDIF.
+
+*
+** syntax IV
+*DATA: wa_team24  TYPE zteam24_02.
+*
+*wa_team24-zst_id   = '08'.
+*wa_team24-zst_name = 'Deepthi'.
+*wa_team24-zst_dept = 'ECE'.
+*wa_team24-zst_mark = '100'.
+*MODIFY zteam24_02 FROM wa_team24.
+*IF sy-subrc EQ 0.
+*  MESSAGE 'Inserted successfully' TYPE 'I'.
+*ELSE.
+*  MESSAGE ' Not inserted ' TYPE 'I'.
+*ENDIF.
+
+** syntax V
+*DATA: wa_team24  TYPE zteam24_02.
+*
+*UPDATE zteam24_02 SET zst_mark = '55'.
+*IF sy-subrc EQ 0.
+*  MESSAGE 'UPDATED successfully' TYPE 'I'.
+*ELSE.
+*  MESSAGE ' Not UPDATED ' TYPE 'I'.
+*ENDIF.
+
+
+* syntax VI
+DATA: wa_team24  TYPE zteam24_02.
+
+DELETE FROM zteam24_02 WHERE zst_id = '04'.
+IF sy-subrc EQ 0.
+  MESSAGE 'Deleted successfully' TYPE 'I'.
+ELSE.
+  MESSAGE ' Not UPDATED ' TYPE 'I'.
+ENDIF.
