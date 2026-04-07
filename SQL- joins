@@ -80,7 +80,7 @@ TYPES: BEGIN OF ty_mara,
 *  ENDIF.
 *
 *
-*****  Syntax 11 For all entries
+******************  Syntax 11 For all entries ************************************88
 *
 *TYPES: BEGIN OF ty_mara,
 *       matnr    TYPE matnr,      " Material number
@@ -169,7 +169,7 @@ TYPES: BEGIN OF ty_mara,
 *  ENDIF.
 
 *
-*****  Syntax 111 Inner join
+**********  Syntax 111 Inner join  ***********************************
 *
 *TYPES: BEGIN OF ty_final,
 *       matnr    TYPE matnr,
@@ -228,7 +228,7 @@ TYPES: BEGIN OF ty_mara,
 
 
 
-****  Syntax 111 Left Outer Join
+****  ****************Syntax 111 Left Outer Join **************************
 
 TYPES: BEGIN OF ty_final,
        matnr    TYPE matnr,
