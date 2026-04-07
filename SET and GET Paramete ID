@@ -1,0 +1,87 @@
+Definition :
+------------------
+
+Parameter Id is the one which holds the memory for the particular field. when we need to pass the field from one screen to another use the parameter Id.
+The SAP Memory is a user-specific memory area of the application server, which is accessed by all main sessions of a user session at once. ABAP programs have access to SPA/GPA parameters stored in the SAP Memory (also called SET/GET parameters).
+
+Example using parameter id :
+------------------------------
+In this example the selection screen input  will have the program name and when you execute the report the program name which you given as input will be in the SE38 initial screen automatically .
+This has been achieved by the parameter ID.
+Code :
+
+*&---------------------------------------------------------------------*
+*& Report  ZPP_FIND_PGM
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+REPORT  zpp_find_pgm.
+
+DATA : lv_programm TYPE progname."TRDIR-name." RS38M-PROGRAMM.
+
+
+TYPES : BEGIN OF t_data,
+progname TYPE reposrc-progname,
+END OF t_data.
+DATA : i_data TYPE TABLE OF t_data.
+SELECT-OPTIONS : s_pgm FOR lv_programm NO INTERVALS NO-EXTENSION.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR s_pgm-low.
+
+PERFORM value_req.
+*&---------------------------------------------------------------------*
+*&      Form  VALUE_REQ
+*&---------------------------------------------------------------------*
+
+FORM value_req .
+
+DATA : i_return TYPE TABLE OF ddshretval.
+
+SELECT progname
+FROM reposrc
+INTO TABLE i_data
+WHERE progname IN s_pgm.
+
+IF i_data[] IS NOT INITIAL.
+
+CALL FUNCTION 'F4IF_INT_TABLE_VALUE_REQUEST'
+EXPORTING
+retfield               = 'PROGNAME'
+dynpprog               = sy-cprog
+dynpnr                 = sy-dynnr
+dynprofield            = 'S_PGM'
+value_org              = 'S'
+TABLES
+value_tab              = i_data
+return_tab             = i_return
+EXCEPTIONS
+parameter_error        = 1
+no_values_found        = 2
+OTHERS                 = 3
+.
+IF sy-subrc <> 0.
+* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+ENDIF.
+
+ENDIF.
+
+
+ENDFORM.                    " VALUE_REQ
+
+START-OF-SELECTION.
+
+SET PARAMETER ID : 'RID' FIELD s_pgm-low.
+
+
+sy-ucomm = 'STRT'.
+CALL TRANSACTION 'SE38' AND SKIP FIRST SCREEN.
+
+OUTPUT
+--------
+clik to check with attached word documetnts 
+
+
