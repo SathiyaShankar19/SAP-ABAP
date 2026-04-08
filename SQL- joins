@@ -19,94 +19,93 @@ TYPES: BEGIN OF ty_mara,
        werks    TYPE werks,
        END OF   ty_final.
 
-*DATA:  it_final  TYPE STANDARD TABLE OF ty_final,
-*       wa_final  TYPE ty_final,
-*       it_mara  TYPE STANDARD TABLE OF ty_mara,
-*       wa_mara  TYPE ty_mara,
-*       it_marc  TYPE STANDARD TABLE OF ty_marc,
-*       wa_marc  TYPE ty_marc,
-*       lv_matnr TYPE matnr.
-*
-*SELECT-OPTIONS: so_matnr   FOR lv_matnr.
-*
-*INITIALIZATION.
-*  REFRESH : it_final.
-*  CLEAR   : wa_final.
-*
-*START-OF-SELECTION.
-*
-*  SELECT matnr
-*         ernam
-*         mtart
-*         mbrsh
-*    FROM mara
-*    INTO TABLE it_mara
-*    WHERE matnr IN so_matnr.
-*
-*  SELECT matnr
-*         werks
-*    FROM marc
-*    INTO TABLE it_marc
-*    WHERE matnr IN so_matnr.
-*
-*  LOOP AT it_mara INTO wa_mara.
-*    wa_final-matnr = wa_mara-matnr.
-*    wa_final-ernam = wa_mara-ernam.
-*    wa_final-mtart = wa_mara-mtart.
-*    wa_final-mbrsh = wa_mara-mbrsh.
-*    READ TABLE it_marc INTO wa_marc WITH KEY matnr = wa_mara-matnr.
-*    wa_final-werks = wa_marc-werks.
-*    APPEND wa_final TO it_final.
-*  ENDLOOP.
-*
-*  IF it_final IS NOT INITIAL.
-*    WRITE: /20 'Material Details' COLOR 3.
-*    SKIP 2.
-*    WRITE: /20  'Material No.' COLOR 5,
-*            40  'Person Created' COLOR 5,
-*            60  'Material Type' COLOR 5,
-*            75  'Industry Sector' COLOR 5,
-*            90  'Plant' COLOR 5.
-*    SKIP.
-*    LOOP AT it_final INTO wa_final.
-*      WRITE: /20 wa_final-matnr,
-*              40 wa_final-ernam,
-*              60 wa_final-mtart,
-*              75 wa_final-mbrsh,
-*              90 wa_final-werks.
-*    ENDLOOP.
-*  ELSE.
-*    MESSAGE i004.
-*  ENDIF.
-*
-*
+DATA:  it_final  TYPE STANDARD TABLE OF ty_final,
+       wa_final  TYPE ty_final,
+       it_mara  TYPE STANDARD TABLE OF ty_mara,
+       wa_mara  TYPE ty_mara,
+       it_marc  TYPE STANDARD TABLE OF ty_marc,
+       wa_marc  TYPE ty_marc,
+       lv_matnr TYPE matnr.
+
+SELECT-OPTIONS: so_matnr   FOR lv_matnr.
+
+INITIALIZATION.
+  REFRESH : it_final.
+  CLEAR   : wa_final.
+
+START-OF-SELECTION.
+
+  SELECT matnr
+         ernam
+         mtart
+         mbrsh
+    FROM mara
+    INTO TABLE it_mara
+    WHERE matnr IN so_matnr.
+
+  SELECT matnr
+         werks
+    FROM marc
+    INTO TABLE it_marc
+    WHERE matnr IN so_matnr.
+
+  LOOP AT it_mara INTO wa_mara.
+    wa_final-matnr = wa_mara-matnr.
+    wa_final-ernam = wa_mara-ernam.
+    wa_final-mtart = wa_mara-mtart.
+    wa_final-mbrsh = wa_mara-mbrsh.
+    READ TABLE it_marc INTO wa_marc WITH KEY matnr = wa_mara-matnr.
+    wa_final-werks = wa_marc-werks.
+    APPEND wa_final TO it_final.
+  ENDLOOP.
+
+  IF it_final IS NOT INITIAL.
+    WRITE: /20 'Material Details' COLOR 3.
+    SKIP 2.
+    WRITE: /20  'Material No.' COLOR 5,
+            40  'Person Created' COLOR 5,
+            60  'Material Type' COLOR 5,
+            75  'Industry Sector' COLOR 5,
+            90  'Plant' COLOR 5.
+    SKIP.
+    LOOP AT it_final INTO wa_final.
+      WRITE: /20 wa_final-matnr,
+              40 wa_final-ernam,
+              60 wa_final-mtart,
+              75 wa_final-mbrsh,
+              90 wa_final-werks.
+    ENDLOOP.
+  ELSE.
+    MESSAGE i004.
+  ENDIF.
+
 ******************  Syntax 11 For all entries ************************************88
-*
-*TYPES: BEGIN OF ty_mara,
-*       matnr    TYPE matnr,      " Material number
-*       ernam    TYPE ernam,      " Person who created
-*       mtart    TYPE mtart,      " material type
-*       mbrsh    TYPE mbrsh,      " Industry sector
-*       END OF   ty_mara,
-*
-*       BEGIN OF ty_marc,
-*       matnr    TYPE matnr,
-*       werks    TYPE werks,       " Plant
-*       END OF   ty_marc,
-*
-*       BEGIN OF ty_final,
-*       matnr    TYPE matnr,
-*       ernam    TYPE ernam,
-*       mtart    TYPE mtart,
-*       mbrsh    TYPE mbrsh,
-*       werks    TYPE werks,
-*       END OF   ty_final.
-*
-*DATA:  it_final  TYPE STANDARD TABLE OF ty_final,
-*       wa_final  TYPE ty_final,
-*       it_mara  TYPE STANDARD TABLE OF ty_mara,
-*       wa_mara  TYPE ty_mara,
-*       it_marc  TYPE STANDARD TABLE OF ty_marc,
+
+TYPES: BEGIN OF ty_mara,
+       matnr    TYPE matnr,      " Material number
+      ernam    TYPE ernam,      " Person who created
+       mtart    TYPE mtart,      " material type
+       mbrsh    TYPE mbrsh,      " Industry sector
+       END OF   ty_mara,
+
+       BEGIN OF ty_marc,
+      matnr    TYPE matnr,
+       werks    TYPE werks,       " Plant
+       END OF   ty_marc,
+
+       BEGIN OF ty_final,
+       matnr    TYPE matnr,
+       ernam    TYPE ernam,
+       mtart    TYPE mtart,
+       mbrsh    TYPE mbrsh,
+       werks    TYPE werks,
+       END OF   ty_final.
+
+DATA:  it_final  TYPE STANDARD TABLE OF ty_final,
+       wa_final  TYPE ty_final,
+       it_mara  TYPE STANDARD TABLE OF ty_mara,
+       wa_mara  TYPE ty_mara,
+       it_marc  TYPE STANDARD TABLE OF ty_marc,
 *       wa_marc  TYPE ty_marc,
 *       lv_matnr TYPE matnr.
 *
