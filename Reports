@@ -1,43 +1,37 @@
 
-/nEX --- completely closes all the sessions
-*&----------------------------------------------------------
 -----------*
-*& Report ZBTCH8_FIRST
-*&
-*&----------------------------------------------------------
------------*
-*&
-*&
-*&----------------------------------------------------------
------------*
-* if the first alphabet is a * then it is a comment and comm
-ents
-* are non executable statements.
-* comments can also be placed at the end of the statement by
-* placing them in ".
-* Every single line statement will end with a period or dot
-* operator.
-* all the keywords will be blue in color .
-* if there are multiple lines in the program then the first
-* line will end with a comma and the last line will end with
-* a period or dot operator.
-REPORT ZBTCH8_FIRST.
-* write is the keyword for printing the text in the output
+****** if the first alphabet is a * then it is a comment and comments are non executable statements.
+****** comments can also be placed at the end of the statement by placing them in ".
+****** Every single line statement will end with a period or dot operator.
+****** all the keywords will be blue in color .
+****** if there are multiple lines in the program then the first line will end with a comma and the last line will end with
+    a period or dot operator.
+
+********* write is the keyword for printing the text in the output
 WRITE 'Hello World'.
-* to print the text in separate lines.
-*Write:/ 'Hello'.
-*Write:/ 'World'.
+______________________________________________________________________________
+********* to print the text in separate lines.
+Write:/ 'Hello'.
+Write:/ 'World'.
 Write:/ 'Hello',
  / 'World'.
-* to print the text in a specific position in the output.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+********* to print the text in a specific position in the output.
 Write:/30 'Hello World'.
-* skip is the keyword for skipping a line.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+********** skip is the keyword for skipping a line.
 Skip.
 Write:/ 'Hello World'.
 Skip 2.
 Write:/ 'Hello World'.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 * uline is used to draw an underline.
 uline.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 * to print different colors in the output.
 Write:/ 'Hello World' color 1.
 Write:/ 'Hello World' color 2.
@@ -46,6 +40,8 @@ Write:/ 'Hello World' color 4.
 Write:/ 'Hello World' color 5.
 Write:/ 'Hello World' color 6.
 Write:/ 'Hello World' color 7.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 * to print only the text in color .
 Uline.
 Write:/ 'Hello World' color 1 INVERSE on.
@@ -56,12 +52,18 @@ Write:/ 'Hello World' color 5 INVERSE on.
 Write:/ 'Hello World' color 6 INVERSE on.
 Write:/ 'Hello World' color 7 INVERSE on.
 uline.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 * to print the current date,time and username in the output.
 Write:/ 'Current Date is',Sy-datum color 3,
  / 'Current Time is',Sy-uzeit color 3,
  / 'Current User is',Sy-Uname color 3,
  / 'Current Client is',sy-mandt color 3.
-String Functions 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+String Functions :
 A String is a character oriented datatype that holds the 
 text of unlimited length. A Variable is a location in memory 
 for storing data. There are different types of data types in 
@@ -92,27 +94,32 @@ of the string.
 *&----------------------------------------------------------
 -----------*
 REPORT ZBTCH8_STRINGS.
-* Data is the keyword that defines the variables
+***** Data is the keyword that defines the variables
 Data:A type String Value 'Welcome to',
  B type string Value 'abap programming',
  C type String.
-* concatenate joins one or more strings.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+******** concatenate joins one or more strings.
 CONCATENATE a b into C.
 Write:/ 'The Concatenated String is',C color 5.
-* concatenate with the space
+
+******* concatenate with the space
 CONCATENATE a b into C SEPARATED BY Space.
 Write:/ 'The Concatenated String is',c color 5.
-* concatenate with a delimiter
+
+******** concatenate with a delimiter
 CONCATENATE a b into c SEPARATED BY ','.
 Write:/ 'The Concatenated String is',c color 5.
-* Translate translates to upper and lower cases.
+
+********* Translate translates to upper and lower cases.
 Translate c to upper case.
 Skip.
 Write:/ 'The Translated String is',c color 3.
 Translate c to lower case.
 Write:/ 'The Translated String is',c color 3.
-* replace is the function that replaces one character with
-* another.
+
+******* replace is the function that replaces one character with another.
 Replace 'o' in c with '$'.
 Skip.
 Write:/ 'The Replaced String is',c color 7.
@@ -122,8 +129,8 @@ Write:/ 'The Replaced String is',c color 7.
 Data:c1 type String value 'HellO wOrld'.
 Replace all OCCURRENCES OF 'o' in c1 with '#' IGNORING CASE.
 Write:/ 'The Replaced String is',c1 color 2.
-* condense is the function that removes the leading spaces
-* in the string.
+
+******* condense is the function that removes the leading spaces in the string.
 Data:C2 type string Value 'ABAP is a programming languag
 e'.
 Skip.
@@ -131,16 +138,19 @@ Condense C2.
 Write:/ 'The Condensed String is',C2 color 4.
 Condense c2 NO-GAPS.
 Write:/ 'The Condensed String is',c2 color 4.
-* Strlen is used to find the length of the string
+
+*************Strlen is used to find the length of the string
 Data:N1 type I."integer
 N1 = Strlen( C2 ).
 Skip.
 Write:/ 'The Length of the String is',N1 color 1.
-Radiobuttons 
+
+************Radiobuttons 
 Radiobuttons are the option for selection where only one 
 will be active at a time.all the radiobuttons must be in a 
 single radiobutton group.
-Parameters is the keyword for defining radiobuttons.
+
+**********Parameters is the keyword for defining radiobuttons.
 The rectangular box in the ABAP Editor is called 
 as Selection screen.
 Selection screen is the frame which contains a 
@@ -163,9 +173,9 @@ REPORT ZBTCH8_RADIOBUTTONS.
 ** selection screen creationg goes here.
 Selection-SCREEN Begin of Block B1 with frame title text-
 000.
-** parameters is the keyword for defining radiobuttons
-* the technical name of the radiobutton should not exceed
-* more than 8 characters long.
+** parameters is the keyword for defining radiobuttons the technical name of the radiobutton should not exceed
+  more than 8 characters long.
+
 parameters:Source RADIOBUTTON GROUP RG1,
  Variants RADIOBUTTON GROUP RG1,
  attrib RADIOBUTTON GROUP RG1,
@@ -173,6 +183,7 @@ parameters:Source RADIOBUTTON GROUP RG1,
  Element RADIOBUTTON GROUP RG1.
 SELECTION-SCREEN End of Block B1.
 * code for processing the radiobuttons
+
 * X -- denotes the selection of the radiobutton
 If Source = 'X'.
  Write:/ 'Source Code is Selected'.
@@ -185,12 +196,16 @@ elseif Document = 'X'.
 else.
  Write:/ 'Text Elements is Selected'.
 endif.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
+
 Internal tables 
 An internal table is a dataset located in the 
 working memory space of ABAP.It is like an 
 Array in other programming languages.An 
 internal table allocates the space at run time.
+
 Every internal table has 3 parts:
+_________________________________
 1) Header line/ Work area/ Line Type/ 
 Structure that stores a single line or 
 row.
@@ -198,6 +213,7 @@ row.
 3) Table Type / Body that stores multiple 
 records or a table.
  There are 3 types of Table Types
+-------------------------------------
 1) Standard Table 
 2) Sorted Table 
 3) Hashed table
